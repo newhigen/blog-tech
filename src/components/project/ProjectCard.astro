@@ -47,13 +47,13 @@ const duration = calcDuration(period);
     {(image || imageLight) && (
       <div class="preview-wrap">
         {imageLight && <img src={imageLight} alt={title} class="preview-image light-only" loading="lazy" />}
-        {image && <img src={image} alt={title} class="preview-image dark-only" loading="lazy" />}
+        {image && <img src={image} alt={title} class={`preview-image${imageLight ? ' dark-only' : ''}`} loading="lazy" />}
       </div>
     )}
     <div class="card-content">
       <div class="row-top">
         <h2 class="title">{title}</h2>
-        {period && <span class="meta">{period}{duration ? ` (${duration})` : ''}</span>}
+        {period && <span class="meta">{period}</span>}
       </div>
       <p class="description">{description}</p>
       <div class="row-bottom">

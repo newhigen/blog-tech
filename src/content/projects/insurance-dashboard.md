@@ -2,7 +2,7 @@
 title: 보험 상품 비교 분석
 description: 실손·정액 보험 상품의 보험료와 보장 구조를 한 화면에서 비교하는 개인 대시보드.
 tags: [Insurance, Comparison, Dashboard]
-period: "2026.05 –"
+period: "2026.05"
 icon: "⚖"
 image: "/projects/insurance-dashboard.png"
 ---

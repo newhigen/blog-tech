@@ -2,7 +2,7 @@
 title: 건강검진 결과지 분석
 description: 여러 해의 건강검진 결과를 누적해 추세와 변화 방향을 보는 개인 건강 데이터 대시보드.
 tags: [Health, Spreadsheet, Dashboard]
-period: "2026.05 –"
+period: "2026.05"
 icon: "✚"
 image: "/projects/health-dashboard.png"
 ---
