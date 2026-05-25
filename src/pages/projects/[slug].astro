@@ -19,14 +19,29 @@ const { Content, headings } = await render(project);
 ---
 
 <PageLayout title={project.data.title} description={project.data.description} headings={headings}>
-  <div class="mb-6">
+  {(project.data.image || project.data.imageLight) && (
+    <div class="screenshot-wrap">
+      {project.data.imageLight && (
+        <img src={project.data.imageLight} alt={project.data.title} class="screenshot light-only" />
+      )}
+      {project.data.image && (
+        <img
+          src={project.data.image}
+          alt={project.data.title}
+          class={`screenshot${project.data.imageLight ? ' dark-only' : ''}`}
+        />
+      )}
+    </div>
+  )}
+
+  <div class="meta-row">
     {project.data.link && (
-      <a href={project.data.link} target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline mr-4">
+      <a href={project.data.link} target="_blank" rel="noopener noreferrer" class="meta-link">
         Visit →
       </a>
     )}
     {project.data.github && (
-      <a href={project.data.github} target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline">
+      <a href={project.data.github} target="_blank" rel="noopener noreferrer" class="meta-link">
         GitHub →
       </a>
     )}
@@ -36,3 +51,36 @@ const { Content, headings } = await render(project);
     <Content />
   </article>
 </PageLayout>
+
+<style>
+  .screenshot-wrap {
+    margin-bottom: 2rem;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .screenshot {
+    width: 100%;
+    display: block;
+  }
+
+  .meta-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .meta-link {
+    font-size: 0.875rem;
+    color: var(--text-tertiary);
+    text-decoration: none;
+  }
+
+  .meta-link:hover {
+    color: var(--text-secondary);
+  }
+
+  :global(html.dark) .light-only { display: none; }
+  :global(html:not(.dark)) .dark-only { display: none; }
+</style>
