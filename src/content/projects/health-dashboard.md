@@ -5,6 +5,8 @@ tags: [Health, Dashboard]
 period: "2026.05"
 icon: "✚"
 image: "/projects/health-dashboard.png"
+imageLight: "/projects/health-dashboard-light.png"
+dashboard: "/dashboards/health.html"
 ---
 
 ## 소개

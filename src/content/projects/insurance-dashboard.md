@@ -5,6 +5,7 @@ tags: [Insurance, Dashboard]
 period: "2026.05"
 icon: "⚖"
 image: "/projects/insurance-dashboard.png"
+dashboard: "/dashboards/insurance.html"
 ---
 
 ## 소개

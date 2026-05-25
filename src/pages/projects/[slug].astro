@@ -19,7 +19,17 @@ const { Content, headings } = await render(project);
 ---
 
 <PageLayout title={project.data.title} description={project.data.description} headings={headings}>
-  {(project.data.image || project.data.imageLight) && (
+  {project.data.dashboard ? (
+    <div class="dashboard-wrap">
+      <iframe
+        src={project.data.dashboard}
+        title={project.data.title}
+        class="dashboard-frame"
+        loading="lazy"
+        scrolling="yes"
+      />
+    </div>
+  ) : (project.data.image || project.data.imageLight) && (
     <div class="screenshot-wrap">
       {project.data.imageLight && (
         <img src={project.data.imageLight} alt={project.data.title} class="screenshot light-only" />
@@ -79,6 +89,21 @@ const { Content, headings } = await render(project);
 
   .meta-link:hover {
     color: var(--text-secondary);
+  }
+
+  .dashboard-wrap {
+    margin-bottom: 2rem;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--bg-secondary);
+  }
+
+  .dashboard-frame {
+    width: 100%;
+    height: 85vh;
+    border: none;
+    display: block;
   }
 
   :global(html.dark) .light-only { display: none; }
