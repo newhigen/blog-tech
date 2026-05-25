@@ -72,7 +72,7 @@ const grouped = sorted.reduce<Record<string, typeof allPosts>>((acc, post) => {
   }
   .projects-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0.9rem;
   }
 
@@ -80,7 +80,7 @@ const grouped = sorted.reduce<Record<string, typeof allPosts>>((acc, post) => {
     .layout-wrapper { padding: 1rem 1.25rem; }
     .sidebar-aside { display: none; }
     .home-main { padding: 0; max-width: 100%; }
-    .projects-grid { grid-template-columns: 1fr; }
+    .projects-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
 </style>
 
