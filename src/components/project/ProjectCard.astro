@@ -10,10 +10,12 @@ interface Props {
   tags?: string[];
   period?: string;
   icon?: string;
+  image?: string;
+  imageLight?: string;
   compact?: boolean;
 }
 
-const { title, slug, description, link, link2, icon2, github, tags = [], period, icon, compact = false } = Astro.props;
+const { title, slug, description, link, link2, icon2, github, tags = [], period, icon, image, imageLight, compact = false } = Astro.props;
 const domain = link ? new URL(link).hostname : null;
 const domain2 = link2 ? new URL(link2).hostname : null;
 const href = `/projects/${slug}`;
@@ -42,6 +44,12 @@ const duration = calcDuration(period);
   </a>
 ) : (
   <article class="project-card" data-href={href}>
+    {(image || imageLight) && (
+      <div class="preview-wrap">
+        {imageLight && <img src={imageLight} alt={title} class="preview-image light-only" loading="lazy" />}
+        {image && <img src={image} alt={title} class="preview-image dark-only" loading="lazy" />}
+      </div>
+    )}
     <div class="card-content">
       <div class="row-top">
         <h2 class="title">{title}</h2>
@@ -51,7 +59,6 @@ const duration = calcDuration(period);
       <div class="row-bottom">
         {domain && <span class="domain">{icon && <span class="icon">{icon}</span>}{domain}</span>}
         {domain2 && <span class="domain">{icon2 && <span class="icon">{icon2}</span>}{domain2}</span>}
-        {tags.map(tag => <span class="tag">{tag}</span>)}
         {github && (
           <a href={github} target="_blank" rel="noopener noreferrer" class="github-link">GitHub →</a>
         )}
@@ -117,13 +124,15 @@ const duration = calcDuration(period);
 
   .project-card {
     display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 0.75rem 1rem;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.85rem;
+    padding: 0.75rem;
     border: 1px solid var(--border);
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.2s ease, border-color 0.2s ease;
+    overflow: hidden;
   }
 
   .project-card:hover {
@@ -132,9 +141,29 @@ const duration = calcDuration(period);
   }
 
   .card-content {
-    flex: 1;
     min-width: 0;
+    padding: 0 0.25rem 0.25rem;
   }
+
+  .preview-wrap {
+    margin: -0.75rem -0.75rem 0;
+    width: calc(100% + 1.5rem);
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-primary);
+  }
+
+  .preview-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+  }
+
+  :global(html.dark) .light-only { display: none; }
+  :global(html:not(.dark)) .dark-only { display: none; }
 
   .row-top {
     display: flex;
@@ -168,9 +197,10 @@ const duration = calcDuration(period);
     color: var(--text-secondary);
     margin: 0 0 0.3rem;
     line-height: 1.45;
-    white-space: nowrap;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
     overflow: hidden;
-    text-overflow: ellipsis;
   }
 
   .row-bottom {
@@ -187,14 +217,6 @@ const duration = calcDuration(period);
 
   .icon {
     margin-right: 0.15rem;
-  }
-
-  .tag {
-    font-size: 0.7rem;
-    padding: 0.05rem 0.4rem;
-    border-radius: 4px;
-    border: 1px solid var(--border);
-    color: var(--text-tertiary);
   }
 
   .github-link {

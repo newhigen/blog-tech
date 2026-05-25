@@ -17,7 +17,7 @@ const sortedProjects = [...allProjects].sort(
 ---
 
 <PageLayout title="Projects">
-  <div style="display: flex; flex-direction: column; gap: 0.75rem; max-width: 32rem;">
+  <div class="projects-grid">
     {sortedProjects.map(project => (
       <ProjectCard
         title={project.data.title}
@@ -27,6 +27,8 @@ const sortedProjects = [...allProjects].sort(
         link2={project.data.link2}
         icon2={project.data.icon2}
         github={project.data.github}
+        image={project.data.image}
+        imageLight={project.data.imageLight}
         tags={project.data.tags}
         period={project.data.period}
         icon={project.data.icon}
@@ -37,3 +39,19 @@ const sortedProjects = [...allProjects].sort(
     )}
   </div>
 </PageLayout>
+
+<style>
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem;
+    max-width: 52rem;
+  }
+
+  @media (max-width: 900px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+      max-width: 32rem;
+    }
+  }
+</style>

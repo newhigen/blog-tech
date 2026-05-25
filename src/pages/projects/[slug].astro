@@ -32,14 +32,6 @@ const { Content, headings } = await render(project);
     )}
   </div>
 
-  <div class="mb-6">
-    {project.data.tags?.map((tag: string) => (
-      <span class="inline-block px-2 py-1 mr-2 mb-2 text-xs rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
-        {tag}
-      </span>
-    ))}
-  </div>
-
   <article class="prose dark:prose-invert max-w-none">
     <Content />
   </article>
