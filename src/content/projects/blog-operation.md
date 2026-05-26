@@ -1,9 +1,6 @@
 ---
 title: 블로그 운영
-description: Astro 기반 블로그 두 개를 직접 개발하고 운영한다. 글쓰기 블로그(sungd.uk)와 기술 블로그(tech.sungd.uk).
-link: https://sungd.uk
-link2: https://tech.sungd.uk
-icon2: "⌥"
+description: Astro 기반 블로그 두 개를 직접 개발하고 운영한다. 글쓰기 블로그와 기술 블로그.
 tags: [Astro]
 period: "2025.07 –"
 icon: "¶"
@@ -15,7 +12,7 @@ imageLight: "/projects/blog-operation-light.png"
 
 글을 쓰고 싶었다. 그런데 플랫폼에 맡기면 언제든 사라질 수 있고, 디자인을 내 마음대로 바꾸기 어렵다. 그래서 직접 만들었다.
 
-두 블로그는 성격이 다르다. **[sungd.uk](https://sungd.uk)**는 읽은 것, 생각한 것을 기록하는 공간이고, **[tech.sungd.uk](https://tech.sungd.uk)**는 개발 환경, 도구, ML에 대한 글을 모아두는 공간이다.
+두 블로그는 성격이 다르다. **글쓰기 블로그**는 읽은 것, 생각한 것을 기록하는 공간이고, **기술 블로그**는 개발 환경, 도구, ML에 대한 글을 모아두는 공간이다.
 
 ## 주요 기능
 
