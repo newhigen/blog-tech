@@ -212,5 +212,37 @@ function formatRelativeDate(date: Date): { text: string; color: string } {
       }
       document.addEventListener('astro:page-load', initDrawer);
     </script>
-  </body>
+
+    <!-- Mermaid Rendering -->
+    <script>
+      import mermaid from 'mermaid';
+      
+      const renderMermaid = async () => {
+        const diagrams = document.querySelectorAll('pre[data-language="mermaid"]');
+        if (diagrams.length === 0) return;
+        
+        mermaid.initialize({ 
+          startOnLoad: false,
+          theme: document.documentElement.classList.contains('dark') ? 'dark' : 'default',
+          securityLevel: 'loose'
+        });
+        
+        for (const diagram of diagrams) {
+          const code = diagram.querySelector('code')?.textContent || '';
+          if (!code) continue;
+          
+          const id = 'mermaid-' + Math.random().toString(36).substr(2, 9);
+          const { svg } = await mermaid.render(id, code);
+          
+          const wrapper = document.createElement('div');
+          wrapper.className = 'mermaid-diagram flex justify-center py-4 bg-white dark:bg-slate-900 rounded-lg my-4 border border-slate-200 dark:border-slate-800';
+          wrapper.innerHTML = svg;
+          diagram.parentNode.replaceChild(wrapper, diagram);
+        }
+      };
+      
+      document.addEventListener('astro:page-load', renderMermaid);
+      document.addEventListener('astro:after-swap', renderMermaid);
+    </script>
+</body>
 </html>
