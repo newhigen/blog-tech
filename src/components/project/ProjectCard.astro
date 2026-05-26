@@ -10,58 +10,48 @@ interface Props {
   tags?: string[];
   period?: string;
   icon?: string;
+  image?: string;
+  imageLight?: string;
   compact?: boolean;
 }
 
-const { title, slug, description, link, link2, icon2, github, tags = [], period, icon, compact = false } = Astro.props;
-const domain = link ? new URL(link).hostname : null;
-const domain2 = link2 ? new URL(link2).hostname : null;
-const href = `/projects/${slug}`;
-
-function calcDuration(p?: string) {
-  if (!p) return null;
-  const m = p.match(/(\d{4})\.(\d{2})/);
-  if (!m) return null;
-  const now = new Date();
-  const total = (now.getFullYear() - parseInt(m[1])) * 12 + (now.getMonth() + 1 - parseInt(m[2])) + 1;
-  const n = total > 0 ? total : 1;
-  if (n < 12) return `${n}개월`;
-  const years = Math.floor(n / 12);
-  const rem = n % 12;
-  return rem === 0 ? `${years}년` : `${years}년 ${rem}개월`;
-}
-const duration = calcDuration(period);
+const { title, slug, description, link, link2, icon2, github, tags = [], period, icon, image, imageLight, compact = false } = Astro.props;
+const href = '/projects/' + slug;
 ---
 
 {compact ? (
-  <a class="project-compact" href={href}>
-    {icon && <span class="compact-icon">{icon}</span>}
-    <span class="compact-title">{title}</span>
-    <span class="compact-sep">—</span>
-    <span class="compact-desc">{description}</span>
+  <a class='project-compact' href={href}>
+    {icon && <span class='compact-icon'>{icon}</span>}
+    <span class='compact-title'>{title}</span>
+    <span class='compact-sep'>—</span>
+    <span class='compact-desc'>{description}</span>
   </a>
 ) : (
-  <article class="project-card" data-href={href}>
-    <div class="card-content">
-      <div class="row-top">
-        <h2 class="title">{title}</h2>
-        {period && <span class="meta">{period}{duration ? ` (${duration})` : ''}</span>}
-      </div>
-      <p class="description">{description}</p>
-      <div class="row-bottom">
-        {domain && <span class="domain">{icon && <span class="icon">{icon}</span>}{domain}</span>}
-        {domain2 && <span class="domain">{icon2 && <span class="icon">{icon2}</span>}{domain2}</span>}
-        {tags.map(tag => <span class="tag">{tag}</span>)}
-        {github && (
-          <a href={github} target="_blank" rel="noopener noreferrer" class="github-link">GitHub →</a>
-        )}
-      </div>
+  <article class='project-card' data-href={href}>
+    <div class='preview-container'>
+      {(image || imageLight) ? (
+        <div class='preview-wrap'>
+          {imageLight && <img src={imageLight} alt={title} class='preview-image light-only' loading='lazy' />}
+          {image && <img src={image} alt={title} class={'preview-image' + (imageLight ? ' dark-only' : '')} loading='lazy' />}
+        </div>
+      ) : (
+        <div class='placeholder-wrap'>
+          <span class='big-icon'>{icon || '📁'}</span>
+        </div>
+      )}
+      {period && (
+        <div class='period-badge-wrap'>
+          <span class='period-badge'>{period}</span>
+        </div>
+      )}
     </div>
-    <div class="arrow" aria-hidden="true">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <line class="arrow-line" x1="2" y1="12" x2="19" y2="12" />
-        <polyline class="arrow-head" points="13 6 19 12 13 18" />
-      </svg>
+
+    <div class='card-content'>
+      <h2 class='title'>{title}</h2>
+      <p class='description'>{description}</p>
+    </div>
+
+    <div class='arrow' aria-hidden='true'>
     </div>
   </article>
 )}
@@ -69,175 +59,55 @@ const duration = calcDuration(period);
 <script>
   import { navigate } from 'astro:transitions/client';
 
-  document.addEventListener('click', (e) => {
-    const card = (e.target as Element).closest<HTMLElement>('[data-href].project-card');
-    if (!card) return;
-    if ((e.target as Element).closest('a')) return;
-    navigate(card.dataset.href!);
-  });
+  function initCards() {
+    const cards = document.querySelectorAll('[data-href].project-card');
+    cards.forEach(card => {
+      card.addEventListener('click', (e) => {
+        const target = e.target as Element;
+        if (target.closest('a')) return;
+        const href = (card as HTMLElement).dataset.href;
+        if (href) navigate(href);
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', initCards);
 </script>
 
 <style>
-  .project-compact {
-    display: flex;
-    align-items: baseline;
-    gap: 0.4rem;
-    font-size: 0.875rem;
-    color: var(--text-primary);
-    text-decoration: none;
-    padding: 0.25rem 0;
-    transition: opacity 0.15s ease;
-  }
-
-  .project-compact:hover {
-    opacity: 0.65;
-  }
-
-  .compact-icon {
-    color: var(--text-tertiary);
-    flex-shrink: 0;
-  }
-
-  .compact-title {
-    font-weight: 500;
-    flex-shrink: 0;
-  }
-
-  .compact-sep {
-    color: var(--text-tertiary);
-    flex-shrink: 0;
-  }
-
-  .compact-desc {
-    color: var(--text-secondary);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+  .project-compact { display: flex; align-items: baseline; gap: 0.5rem; font-size: 0.875rem; color: var(--text-primary); text-decoration: none; padding: 0.4rem 0; transition: opacity 0.2s ease; }
+  .project-compact:hover { opacity: 0.6; }
+  .compact-icon { color: var(--text-tertiary); flex-shrink: 0; }
+  .compact-title { font-weight: 600; flex-shrink: 0; }
+  .compact-desc { color: var(--text-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
   .project-card {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 0.75rem 1rem;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
-  }
-
-  .project-card:hover {
-    background-color: var(--selection);
-    border-color: var(--text-tertiary);
-  }
-
-  .card-content {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .row-top {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 0.5rem;
-    margin-bottom: 0.2rem;
-  }
-
-  .title {
-    font-size: 0.9375rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin: 0;
-    padding: 0;
-    border: none;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .meta {
-    font-size: 0.75rem;
-    color: var(--text-tertiary);
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-
-  .description {
-    font-size: 0.8125rem;
-    color: var(--text-secondary);
-    margin: 0 0 0.3rem;
-    line-height: 1.45;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .row-bottom {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-  }
-
-  .domain {
-    font-size: 0.75rem;
-    color: var(--text-tertiary);
-  }
-
-  .icon {
-    margin-right: 0.15rem;
-  }
-
-  .tag {
-    font-size: 0.7rem;
-    padding: 0.05rem 0.4rem;
-    border-radius: 4px;
-    border: 1px solid var(--border);
-    color: var(--text-tertiary);
-  }
-
-  .github-link {
-    font-size: 0.75rem;
-    color: var(--text-tertiary);
-    text-decoration: none;
     position: relative;
-    z-index: 1;
-    margin-left: auto;
-  }
-
-  .github-link:hover {
-    color: var(--text-secondary);
-    opacity: 1;
-  }
-
-  .arrow {
-    flex-shrink: 0;
-    color: var(--text-tertiary);
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    background: var(--bg-card, var(--bg));
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.2s ease;
   }
+  .project-card:hover { border-color: var(--text-tertiary); background: var(--selection); }
 
-  .arrow-line {
-    transform-origin: left center;
-    transform: scaleX(0);
-    transition: transform 0.25s ease;
-  }
+  .preview-container { position: relative; width: 100%; aspect-ratio: 16 / 10; overflow: hidden; background: var(--selection); border-bottom: 1px solid var(--border); }
+  .preview-image { width: 100%; height: 100%; object-fit: cover; }
+  .placeholder-wrap { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
+  .big-icon { font-size: 3rem; opacity: 0.8; }
 
-  .arrow-head {
-    transform: translateX(5px);
-    transition: transform 0.25s ease;
-  }
+  .period-badge-wrap { position: absolute; top: 12px; left: 12px; z-index: 10; }
+  .period-badge { padding: 2px 8px; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; font-size: 0.7rem; font-weight: 500; color: var(--text-secondary); }
 
-  .project-card:hover .arrow-line {
-    transform: scaleX(1);
-  }
+  .card-content { padding: 1rem; flex: 1; display: flex; flex-direction: column; }
+  .title { font-size: 0.95rem; font-weight: 600; color: var(--text-primary); margin: 0 0 0.5rem; }
+  .description { font-size: 0.85rem; line-height: 1.5; color: var(--text-secondary); margin: 0; }
 
-  .project-card:hover .arrow-head {
-    transform: translateX(0);
-  }
+  
 
-  .project-card:hover .arrow {
-    color: var(--text-secondary);
-  }
+  :global(html.dark) .light-only { display: none; }
+  :global(html:not(.dark)) .dark-only { display: none; }
 </style>
