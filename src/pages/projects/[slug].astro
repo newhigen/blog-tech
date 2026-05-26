@@ -20,7 +20,15 @@ const { Content, headings } = await render(project);
 
 <PageLayout title={project.data.title} description={project.data.description} headings={headings}>
   {project.data.dashboard ? (
-    <div class="dashboard-wrap">
+    <div class="dashboard-wrap" id="dashboardWrap">
+      <div class="dashboard-toolbar">
+        <button type="button" class="dash-btn" id="dashExpand" aria-label="펼치기">
+          <span class="dash-btn-icon">⛶</span><span class="dash-btn-label">펼치기</span>
+        </button>
+        <a class="dash-btn" href={project.data.dashboard} target="_blank" rel="noopener noreferrer">
+          <span class="dash-btn-icon">↗</span><span class="dash-btn-label">새 창</span>
+        </a>
+      </div>
       <iframe
         src={project.data.dashboard}
         title={project.data.title}
@@ -29,6 +37,26 @@ const { Content, headings } = await render(project);
         scrolling="yes"
       />
     </div>
+    <script is:inline>
+      (() => {
+        const wrap = document.getElementById('dashboardWrap');
+        const btn = document.getElementById('dashExpand');
+        if (!wrap || !btn) return;
+        const label = btn.querySelector('.dash-btn-label');
+        const icon = btn.querySelector('.dash-btn-icon');
+        function setState(expanded) {
+          wrap.classList.toggle('expanded', expanded);
+          document.body.style.overflow = expanded ? 'hidden' : '';
+          label.textContent = expanded ? '접기' : '펼치기';
+          icon.textContent = expanded ? '×' : '⛶';
+          btn.setAttribute('aria-label', expanded ? '접기' : '펼치기');
+        }
+        btn.addEventListener('click', () => setState(!wrap.classList.contains('expanded')));
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && wrap.classList.contains('expanded')) setState(false);
+        });
+      })();
+    </script>
   ) : (project.data.image || project.data.imageLight) && (
     <div class="screenshot-wrap">
       {project.data.imageLight && (
@@ -92,11 +120,47 @@ const { Content, headings } = await render(project);
   }
 
   .dashboard-wrap {
+    position: relative;
     margin-bottom: 2rem;
     border-radius: 10px;
     overflow: hidden;
     border: 1px solid var(--border);
     background: var(--bg-secondary);
+  }
+
+  .dashboard-toolbar {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 2;
+    display: flex;
+    gap: 6px;
+  }
+
+  .dash-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 5px 10px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    background: rgba(20, 22, 28, 0.78);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    backdrop-filter: blur(6px);
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .dash-btn:hover {
+    background: rgba(30, 33, 42, 0.92);
+    color: var(--text-primary);
+  }
+
+  .dash-btn-icon {
+    font-size: 0.95rem;
+    line-height: 1;
   }
 
   .dashboard-frame {
@@ -105,6 +169,22 @@ const { Content, headings } = await render(project);
     height: auto;
     border: none;
     display: block;
+  }
+
+  .dashboard-wrap.expanded {
+    position: fixed;
+    inset: 0;
+    margin: 0;
+    border-radius: 0;
+    border: none;
+    z-index: 9999;
+    background: var(--bg-primary, #0e0f12);
+  }
+
+  .dashboard-wrap.expanded .dashboard-frame {
+    width: 100vw;
+    height: 100vh;
+    aspect-ratio: auto;
   }
 
   :global(html.dark) .light-only { display: none; }
