@@ -2,7 +2,7 @@
 title: 블로그 운영
 description: Astro 기반 블로그 두 개를 직접 개발하고 운영한다. 글쓰기 블로그와 기술 블로그.
 tags: [Astro]
-period: "2025.07 –"
+period: "2025.07"
 icon: "¶"
 image: "/projects/blog-operation.png"
 imageLight: "/projects/blog-operation-light.png"

@@ -9,40 +9,81 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
 <style>
-/* ─── Design Tokens ─── */
+/* ─── Design Tokens — Light (default) ─── */
 :root {
-  /* Background — blue-tinted dark */
-  --bg-page:        #080b11;
-  --bg-card:        #0f1520;
-  --bg-card-hover:  #131b28;
-  --bg-elevated:    #172030;
-  --bg-border:      #1e2a3d;
-  --bg-border-sub:  #162030;
+  --bg-page:        #f8fafc;
+  --bg-card:        #ffffff;
+  --bg-card-hover:  #f1f5f9;
+  --bg-elevated:    #e2e8f0;
+  --bg-border:      #cbd5e1;
+  --bg-border-sub:  #e2e8f0;
 
-  /* Text — 4단계 */
-  --text-primary:   #eef2ff;
-  --text-body:      #c8d3e8;
-  --text-secondary: #7e8fa8;
-  --text-muted:     #4a5668;
+  --text-primary:   #0f172a;
+  --text-body:      #334155;
+  --text-secondary: #64748b;
+  --text-muted:     #94a3b8;
 
-  /* Status */
-  --good:      #34d399;
-  --good-dim:  #0b2b20;
-  --good-mid:  #166534;
-  --warn:      #fbbf24;
-  --warn-dim:  #2a1a00;
-  --warn-mid:  #78350f;
-  --bad:       #f87171;
-  --bad-dim:   #2a0a0a;
-  --bad-mid:   #7f1d1d;
-  --info:      #60a5fa;
-  --info-dim:  #0a1e3a;
-  --info-mid:  #1e3a5f;
+  --good:      #16a34a;
+  --good-dim:  #dcfce7;
+  --good-mid:  #86efac;
+  --warn:      #d97706;
+  --warn-dim:  #fef3c7;
+  --warn-mid:  #fde68a;
+  --bad:       #dc2626;
+  --bad-dim:   #fee2e2;
+  --bad-mid:   #fecaca;
+  --info:      #2563eb;
+  --info-dim:  #dbeafe;
+  --info-mid:  #bfdbfe;
 
-  /* Accent — critical highlight */
-  --crit:      #ff6b6b;
-  --crit-glow: #ff6b6b30;
+  --crit:      #dc2626;
+  --crit-glow: #dc262620;
 
+  --chart-axis:  #94a3b8;
+  --chart-grid:  #e2e8f0;
+  --chart-text:  #64748b;
+  --chart-border: #cbd5e1;
+}
+
+/* ─── Dark theme (system preference) ─── */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-page:        #080b11;
+    --bg-card:        #0f1520;
+    --bg-card-hover:  #131b28;
+    --bg-elevated:    #172030;
+    --bg-border:      #1e2a3d;
+    --bg-border-sub:  #162030;
+
+    --text-primary:   #eef2ff;
+    --text-body:      #c8d3e8;
+    --text-secondary: #7e8fa8;
+    --text-muted:     #4a5668;
+
+    --good:      #34d399;
+    --good-dim:  #0b2b20;
+    --good-mid:  #166534;
+    --warn:      #fbbf24;
+    --warn-dim:  #2a1a00;
+    --warn-mid:  #78350f;
+    --bad:       #f87171;
+    --bad-dim:   #2a0a0a;
+    --bad-mid:   #7f1d1d;
+    --info:      #60a5fa;
+    --info-dim:  #0a1e3a;
+    --info-mid:  #1e3a5f;
+
+    --crit:      #ff6b6b;
+    --crit-glow: #ff6b6b30;
+
+    --chart-axis:  #4a5668;
+    --chart-grid:  #0e1928;
+    --chart-text:  #7e8fa8;
+    --chart-border: #1e2d45;
+  }
+}
+
+:root {
   /* Spacing */
   --space-xs:  4px;
   --space-sm:  8px;
@@ -115,7 +156,7 @@ body {
   border: 1px solid var(--bg-border);
   transition: border-color .2s, background .2s;
 }
-.card:hover { background: var(--bg-card-hover); border-color: #253048; }
+.card:hover { background: var(--bg-card-hover); border-color: var(--text-muted); }
 .card-sm {
   background: var(--bg-card);
   border-radius: var(--radius-md);
@@ -166,7 +207,7 @@ body {
 .pill-ok   { background: var(--good-dim); color: var(--good); border: 1px solid #1a4a30; }
 .pill-warn { background: var(--warn-dim); color: var(--warn); border: 1px solid #4a2a00; }
 .pill-bad  { background: var(--bad-dim);  color: var(--bad);  border: 1px solid #5a1818; }
-.pill-gray { background: #111820; color: var(--text-muted); border: 1px solid var(--bg-border); }
+.pill-gray { background: var(--bg-elevated); color: var(--text-muted); border: 1px solid var(--bg-border); }
 
 /* ─── Metric ─── */
 .metric-big { font-size: 34px; font-weight: 700; color: var(--text-primary); line-height: 1.05; letter-spacing: -0.03em; }
@@ -196,7 +237,7 @@ body {
   background: linear-gradient(90deg, transparent, var(--crit), transparent);
 }
 .card-critical .metric-big { color: var(--crit); }
-.card-critical .card-title { color: #a05050; }
+.card-critical .card-title { color: var(--crit); }
 
 /* ─── Progress ─── */
 .prog-row { margin-bottom: 18px; }
@@ -219,10 +260,10 @@ body {
   font-size: 14px;
   line-height: 1.6;
 }
-.alert-r { background: #130606; border: 1px solid #3a1010; color: #fca5a5; }
-.alert-y { background: #120e00; border: 1px solid #3a2000; color: #fcd34d; }
-.alert-g { background: #040f08; border: 1px solid #0e3018; color: #6ee7b7; }
-.alert-b { background: #060e1a; border: 1px solid #0e2040; color: #93c5fd; }
+.alert-r { background: var(--bad-dim); border: 1px solid var(--bad-mid); color: var(--bad); }
+.alert-y { background: var(--warn-dim); border: 1px solid var(--warn-mid); color: var(--warn); }
+.alert-g { background: var(--good-dim); border: 1px solid var(--good-mid); color: var(--good); }
+.alert-b { background: var(--info-dim); border: 1px solid var(--info-mid); color: var(--info); }
 .alert-t { font-weight: 700; margin-bottom: 5px; font-size: 13px; }
 
 /* ─── Timeline ─── */
@@ -254,7 +295,7 @@ body {
 .tl-done   { border-color: var(--good); background: var(--good) !important; }
 .tl-now    { border-color: var(--info); box-shadow: 0 0 0 4px #60a5fa22, 0 0 12px #60a5fa40; }
 .tl-next   { border-color: var(--warn); }
-.tl-future { border-color: #2a3a54; }
+.tl-future { border-color: var(--bg-border); }
 .tl-date  { font-size: 11px; color: var(--text-muted); font-weight: 600; margin-bottom: 4px; letter-spacing: .03em; }
 .tl-title { font-size: 14px; font-weight: 600; color: var(--text-primary); line-height: 1.4; }
 .tl-body  { font-size: 13px; color: var(--text-secondary); margin-top: 4px; line-height: 1.55; }
@@ -279,7 +320,7 @@ td {
   vertical-align: middle;
 }
 tr:last-child td { border-bottom: none; }
-tr:hover td { background: #101825; }
+tr:hover td { background: var(--bg-card-hover); }
 .td-ok   { color: var(--good); font-weight: 600; }
 .td-warn { color: var(--warn); font-weight: 600; }
 .td-bad  { color: var(--bad); font-weight: 600; }
@@ -1204,7 +1245,8 @@ tr:hover td { background: #101825; }
 </div><!-- /container -->
 
 <script>
-Chart.defaults.color = '#4a5668';
+const cssVar = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+Chart.defaults.color = cssVar('--chart-text');
 Chart.defaults.font.family = "Pretendard, -apple-system, 'Apple SD Gothic Neo', sans-serif";
 Chart.defaults.font.size = 11;
 
@@ -1216,11 +1258,11 @@ const opts = (yMin,yMax,ann={}) => ({
   plugins:{
     legend:{
       display:true,position:'top',
-      labels:{boxWidth:10,padding:12,color:'#7e8fa8',font:{size:11,weight:500},usePointStyle:true,pointStyle:'circle'}
+      labels:{boxWidth:10,padding:12,color:cssVar('--chart-text'),font:{size:11,weight:500},usePointStyle:true,pointStyle:'circle'}
     },
     tooltip:{
       backgroundColor:'#101c30',
-      borderColor:'#1e2d45',
+      borderColor:cssVar('--chart-border'),
       borderWidth:1,
       titleColor:'#eef2ff',
       bodyColor:'#c8d3e8',
@@ -1233,8 +1275,8 @@ const opts = (yMin,yMax,ann={}) => ({
     annotation:{annotations:ann}
   },
   scales:{
-    x:{grid:{color:'#0e1928'},ticks:{color:'#4a5668',font:{size:10}}},
-    y:{min:yMin,max:yMax,grid:{color:'#0e1928'},ticks:{color:'#4a5668',font:{size:10},padding:6}}
+    x:{grid:{color:cssVar('--chart-grid')},ticks:{color:cssVar('--chart-axis'),font:{size:10}}},
+    y:{min:yMin,max:yMax,grid:{color:cssVar('--chart-grid')},ticks:{color:cssVar('--chart-axis'),font:{size:10},padding:6}}
   }
 });
 

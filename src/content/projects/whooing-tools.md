@@ -2,7 +2,7 @@
 title: 가계부 자동 기입
 description: 은행 내역을 후잉 import 형식으로 변환하고 개인 가계부 워크플로를 보조하는 도구 모음.
 tags: [Python, Finance]
-period: "2026.05"
+period: "2026.03"
 icon: "₩"
 image: "/projects/whooing-tools.png"
 ---
