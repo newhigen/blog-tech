@@ -204,9 +204,9 @@ body {
   border-radius: 20px;
   line-height: 1.4;
 }
-.pill-ok   { background: var(--good-dim); color: var(--good); border: 1px solid #1a4a30; }
-.pill-warn { background: var(--warn-dim); color: var(--warn); border: 1px solid #4a2a00; }
-.pill-bad  { background: var(--bad-dim);  color: var(--bad);  border: 1px solid #5a1818; }
+.pill-ok   { background: var(--good-dim); color: var(--good); border: 1px solid var(--good-mid); }
+.pill-warn { background: var(--warn-dim); color: var(--warn); border: 1px solid var(--warn-mid); }
+.pill-bad  { background: var(--bad-dim);  color: var(--bad);  border: 1px solid var(--bad-mid); }
 .pill-gray { background: var(--bg-elevated); color: var(--text-muted); border: 1px solid var(--bg-border); }
 
 /* ─── Metric ─── */
@@ -219,16 +219,24 @@ body {
 
 /* ─── Critical metric card ─── */
 .card-critical {
-  background: linear-gradient(135deg, #1a0808 0%, #200f0f 100%);
-  border: 1px solid #4a1a1a;
+  background: var(--bad-dim);
+  border: 1px solid var(--bad-mid);
   border-radius: var(--radius-lg);
   padding: var(--space-lg);
   position: relative;
   overflow: hidden;
-  box-shadow: 0 0 24px var(--crit-glow), inset 0 1px 0 #5a1a1a;
+  box-shadow: 0 0 24px var(--crit-glow), inset 0 1px 0 var(--bad-mid);
   transition: box-shadow .3s;
 }
-.card-critical:hover { box-shadow: 0 0 36px #ff6b6b40, inset 0 1px 0 #5a1a1a; }
+.card-critical:hover { box-shadow: 0 0 36px var(--crit-glow), inset 0 1px 0 var(--bad-mid); }
+@media (prefers-color-scheme: dark) {
+  .card-critical {
+    background: linear-gradient(135deg, #1a0808 0%, #200f0f 100%);
+    border-color: #4a1a1a;
+    box-shadow: 0 0 24px var(--crit-glow), inset 0 1px 0 #5a1a1a;
+  }
+  .card-critical:hover { box-shadow: 0 0 36px #ff6b6b40, inset 0 1px 0 #5a1a1a; }
+}
 .card-critical::before {
   content: '';
   position: absolute;
@@ -352,10 +360,10 @@ tr:hover td { background: var(--bg-card-hover); }
   border-radius: 10px;
   white-space: nowrap;
 }
-.phase-1    { background: #2a0808; color: #f87171; border: 1px solid #5a1a1a; }
-.phase-2    { background: #251500; color: #fbbf24; border: 1px solid #4a2a00; }
-.phase-3    { background: #081525; color: #60a5fa; border: 1px solid #0e2a48; }
-.phase-done { background: #041408; color: #34d399; border: 1px solid #0a3020; }
+.phase-1    { background: var(--bad-dim);  color: var(--bad);  border: 1px solid var(--bad-mid); }
+.phase-2    { background: var(--warn-dim); color: var(--warn); border: 1px solid var(--warn-mid); }
+.phase-3    { background: var(--info-dim); color: var(--info); border: 1px solid var(--info-mid); }
+.phase-done { background: var(--good-dim); color: var(--good); border: 1px solid var(--good-mid); }
 .ac-body { font-size: 13px; color: var(--text-secondary); margin-top: 6px; line-height: 1.65; }
 .ac-why  { font-size: 12px; color: var(--good); margin-top: 6px; }
 .ac-note { font-size: 12px; color: var(--bad); margin-top: 4px; }
@@ -423,8 +431,8 @@ tr:hover td { background: var(--bg-card-hover); }
   border-radius: var(--radius-xl);
   padding: var(--space-xl);
   margin-bottom: 20px;
-  border: 1px solid #1e2d45;
-  background: linear-gradient(135deg, #0c1526 0%, #101c30 50%, #0e1928 100%);
+  border: 1px solid var(--bg-border);
+  background: linear-gradient(135deg, #f0f8ff 0%, #e8f3ff 50%, #f0f5ff 100%);
   position: relative;
   overflow: hidden;
 }
@@ -433,7 +441,16 @@ tr:hover td { background: var(--bg-card-hover); }
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, #2a4a7a, transparent);
+  background: linear-gradient(90deg, transparent, var(--info-mid), transparent);
+}
+@media (prefers-color-scheme: dark) {
+  .hero-card {
+    background: linear-gradient(135deg, #0c1526 0%, #101c30 50%, #0e1928 100%);
+    border-color: #1e2d45;
+  }
+  .hero-card::before {
+    background: linear-gradient(90deg, transparent, #2a4a7a, transparent);
+  }
 }
 .hero-inner {
   display: flex;
@@ -462,8 +479,14 @@ tr:hover td { background: var(--bg-card-hover); }
   min-width: 76px;
   padding: 14px 12px;
   border-radius: var(--radius-md);
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.06);
+  background: var(--bg-elevated);
+  border: 1px solid var(--bg-border);
+}
+@media (prefers-color-scheme: dark) {
+  .hero-stat {
+    background: rgba(255,255,255,0.03);
+    border-color: rgba(255,255,255,0.06);
+  }
 }
 .hero-stat-num {
   font-size: 28px;
@@ -533,9 +556,9 @@ tr:hover td { background: var(--bg-card-hover); }
         <span class="hero-stat-num" style="color:var(--warn)">2</span>
         <span class="hero-stat-label">주의</span>
       </div>
-      <div class="hero-stat" style="border-color:rgba(255,107,107,0.2);background:rgba(255,107,107,0.05);">
+      <div class="hero-stat" style="border-color:var(--bad-mid);background:var(--bad-dim);">
         <span class="hero-stat-num" style="color:var(--crit)">1</span>
-        <span class="hero-stat-label" style="color:#a05050;">즉시 관리</span>
+        <span class="hero-stat-label" style="color:var(--bad);">즉시 관리</span>
       </div>
     </div>
   </div>
@@ -588,7 +611,7 @@ tr:hover td { background: var(--bg-card-hover); }
     <div class="card-title">공복혈당 ⚠️</div>
     <div class="metric-big">94<span class="metric-unit" style="color:#c06060">mg/dL</span></div>
     <div class="metric-change up-bad">▲ 다년 상승 (82→85→88→91→94)</div>
-    <div style="font-size:12px;color:#c06060;margin-top:4px;">기준: 100 = 당뇨 전단계 (정상 상한)</div>
+    <div style="font-size:12px;color:var(--warn);margin-top:4px;">기준: 100 = 당뇨 전단계 (정상 상한)</div>
     <div class="mt-md"><span class="pill pill-bad">상한선 6 남음</span></div>
   </div>
 </div>
@@ -803,9 +826,9 @@ tr:hover td { background: var(--bg-card-hover); }
     <span class="ac-phase phase-1">지금 당장</span>
   </div>
   <div class="ac-body">
-    <strong style="color:#f0f4ff">1달: 80g 이상</strong> (지금 64g에서 첫 목표)<br>
-    <strong style="color:#f0f4ff">3달: 100g 이상</strong><br>
-    <strong style="color:#f0f4ff">6달: 110g+</strong> (최종 목표)<br><br>
+    <strong style="color:var(--text-primary)">1달: 80g 이상</strong> (지금 64g에서 첫 목표)<br>
+    <strong style="color:var(--text-primary)">3달: 100g 이상</strong><br>
+    <strong style="color:var(--text-primary)">6달: 110g+</strong> (최종 목표)<br><br>
     식당에서 현실적으로: 삼계탕 30g · 된장찌개+계란 15g · 두부 100g=8g. 고단백 메뉴 의식적으로 선택. 부족한 날은 프로틴 쉐이크 1스쿱(25g) 보조.
   </div>
   <div class="ac-why">→ 골격근 34kg 유지 · 포만감으로 간식 욕구 감소</div>
@@ -828,8 +851,8 @@ tr:hover td { background: var(--bg-card-hover); }
     <span class="ac-phase phase-1">지금 당장</span>
   </div>
   <div class="ac-body">
-    <strong style="color:#f0f4ff">처음 1–2달: 주 3회 30–40분</strong> (무리 없이 시작)<br>
-    <strong style="color:#f0f4ff">3달 후: 주 5회로 증가</strong><br><br>
+    <strong style="color:var(--text-primary)">처음 1–2달: 주 3회 30–40분</strong> (무리 없이 시작)<br>
+    <strong style="color:var(--text-primary)">3달 후: 주 5회로 증가</strong><br><br>
     심박수 60–70% (약간 숨 찬 정도). 식후 30–60분 후가 혈당 관리에 가장 효과적.
   </div>
   <div class="ac-why">→ HDL↑ (유산소만이 올리는 방법) · 혈당 소비 · 혈압 안정 · 내장지방 감소</div>
@@ -842,7 +865,7 @@ tr:hover td { background: var(--bg-card-hover); }
   </div>
   <div class="ac-body">
     걷기 루틴이 안정된 후 시작. 트레이너에게 명확히 요청: <em>"복합운동(스쿼트·데드리프트·벤치프레스·바벨로우) 자세 위주로."</em><br>
-    <strong style="color:#f0f4ff">루틴: 상체Push(월) - 하체(수) - 상체Pull(금)</strong> · 상체 약점(팔·몸통 94%) 집중.
+    <strong style="color:var(--text-primary)">루틴: 상체Push(월) - 하체(수) - 상체Pull(금)</strong> · 상체 약점(팔·몸통 94%) 집중.
   </div>
   <div class="ac-why">→ 골격근 34.5kg 이상 · 인슐린 감수성 개선 · 기초대사량↑</div>
   <div class="ac-note">동시에 걷기+근력 시작하면 부상 위험과 번아웃 위험 높음. 순서 지킬 것.</div>
