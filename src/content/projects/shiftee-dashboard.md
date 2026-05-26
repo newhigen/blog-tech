@@ -5,6 +5,7 @@ tags: [Dashboard, Data Visualization]
 period: "2026.05"
 icon: "⌚"
 image: "/projects/shiftee-dashboard.png"
+dashboard: "/dashboards/shiftee.html"
 ---
 
 ## 소개
