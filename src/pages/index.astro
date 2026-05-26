@@ -70,11 +70,17 @@ const grouped = sorted.reduce<Record<string, typeof allPosts>>((acc, post) => {
   .home-section:first-child {
     margin-bottom: 2.5rem;
   }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.9rem;
+  }
 
   @media (max-width: 768px) {
     .layout-wrapper { padding: 1rem 1.25rem; }
     .sidebar-aside { display: none; }
     .home-main { padding: 0; max-width: 100%; }
+    .projects-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
 </style>
 
@@ -120,7 +126,7 @@ const grouped = sorted.reduce<Record<string, typeof allPosts>>((acc, post) => {
         <h2 style="font-size: 0.8125rem; font-weight: 500; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 1rem;">
           Projects
         </h2>
-        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+        <div class="projects-grid">
           {sortedProjects.map(project => (
             <ProjectCard
               title={project.data.title}
@@ -129,10 +135,11 @@ const grouped = sorted.reduce<Record<string, typeof allPosts>>((acc, post) => {
               link={project.data.link}
               link2={project.data.link2}
               github={project.data.github}
+              image={project.data.image}
+              imageLight={project.data.imageLight}
               tags={project.data.tags}
               period={project.data.period}
               icon={project.data.icon}
-              compact
             />
           ))}
         </div>

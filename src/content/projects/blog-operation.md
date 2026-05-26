@@ -1,55 +1,48 @@
 ---
 title: 블로그 운영
-description: Astro 기반 블로그 두 개를 직접 개발하고 운영한다. 글쓰기 블로그(sungd.uk)와 기술 블로그(tech.sungd.uk).
-link: https://sungd.uk
-link2: https://tech.sungd.uk
-icon2: "⌥"
+description: 기록이 쌓이면 나만의 자산이 돼요. 옵시디언으로 편하게 쓰고, 아스트로로 예쁘게 배포하는 나만의 지식 관리 시스템을 만들었어요.
 tags: [Astro]
-period: "2025.07 –"
+period: "2025.07"
 icon: "¶"
+image: "/projects/blog-operation.png"
+imageLight: "/projects/blog-operation-light.png"
 ---
 
-## 블로그
+## 나만의 온전한 기록 공간을
+원하셨나요?
+외부 플랫폼에 글을 쓰다 보면 서비스가 종료되거나, 디자인을 마음대로 바꿀 수 없어 답답할 때가 있죠.
 
-- **[sungd.uk](https://sungd.uk)**: 생각, 독서, 일상에 대한 글을 올린다.
-- **[tech.sungd.uk](https://tech.sungd.uk)**: ML, 개발 환경, 도구에 대한 글을 올린다.
+### 이런 고민을 해보셨을 거예요
+- 플랫폼에 갇히지 않고 내 글을 온전히 **소유**하고 싶어요.
+- 생각하는 기록과 기술 메모의 **성격**을 분명히 나누고 싶어요.
+- 내가 원하는 기능을 언제든 직접 추가할 수 있는 자유가 필요해요.
 
-## 스택
+## 이렇게 해결해봐요
+작성부터 배포까지, 나에게 딱 맞는 워크플로우를 직접 만들었어요.
 
-두 블로그 모두 [Astro](https://astro.build)로 구성되어 있다. Jekyll, Hugo, Notion, Obsidian Publish 등을 검토했으나 빠르고 마음에 드는 템플릿이 있어 Astro를 선택했다.
-
-코드 수정은 Claude Code로 처리한다.
-
-## Obsidian 글쓰기 팁
-
-### HTML 태그 단축키로 감싸기
-
-`<mark>`나 `<sup>` 같은 HTML 태그를 자주 쓴다. 매번 직접 입력하는 것이 번거롭다. Templater 플러그인을 쓰면 텍스트를 선택하고 단축키 하나로 처리할 수 있다.
-
-#### 1. Templater 설치
-
-Settings → Community plugins → Templater 설치 후 활성화
-
-#### 2. 템플릿 폴더 지정
-
-Settings → Templater → Template folder location에 `Templates` 입력
-
-#### 3. 템플릿 파일 생성
-
-`Templates/wrap-mark.md`
-```
-<%* tR += `<mark>${tp.file.selection()}</mark>` %>
+```mermaid
+flowchart LR
+  A[옵시디언에서 써요] --> B[깃에 올려요]
+  B --> C[자동으로 빌드돼요]
+  C --> D[전 세계에 배포 완료!]
 ```
 
-`Templates/wrap-sup.md`
-```
-<%* tR += `<sup>${tp.file.selection()}</sup>` %>
-```
+옵시디언에서 편하게 쓰고 푸시만 하세요. 아스트로(Astro)가 예쁘게 배포해드릴게요.
 
-#### 4. 단축키 지정
+## 이런 기능을 담았어요
 
-Settings → Templater → Template Hotkeys → `+`
-- `wrap-mark.md` → `⌘⇧M`
-- `wrap-sup.md` → `⌘⇧U`
+### 두 가지 목소리로 기록해요
+글의 성격에 맞춰 채널을 세심하게 나누었어요.
+- **생각 기록장**: 읽은 책과 떠오른 생각을 부드러운 호흡으로 담아요.
+- **기술 블로그**: 개발 도구와 AI 인사이트를 간결하고 명확하게 정리해요.
 
-감싸고 싶은 텍스트를 드래그 → 단축키 → 완료. 다른 태그도 같은 방식으로 추가할 수 있다.
+### 블로그에 꼭 필요한 기능을 직접 짰어요
+편리한 읽기 경험을 위해 다양한 도구를 만들었어요.
+- **독서 히트맵**: 내가 언제 얼마나 읽었는지 한눈에 보여드려요.
+- **똑똑한 목차**: 긴 글도 길을 잃지 않게 목차를 자동으로 생성해요.
+- **맞춤형 카드**: 대시보드를 블로그에 바로 띄울 수 있는 시스템을 갖췄어요.
+
+## 이제 이렇게 달라져요
+- 기록이 플랫폼에 종속되지 않고 나만의 **지식 자산**이 돼요.
+- 복잡한 과정 신경 쓰지 않고 **글쓰기**에만 집중할 수 있어요.
+- 나만의 시스템은 오늘도 기록과 함께 조금씩 자라나고 있어요.

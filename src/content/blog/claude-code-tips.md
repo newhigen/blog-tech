@@ -17,47 +17,6 @@ Ghostty를 wrapping한 터미널이다. pane 분할이 편하고, 알림이 잘 
 
 <div style="border-bottom: 1px dashed var(--border);"></div>
 
-## 알림 및 소리 설정
-
-### peon-ping — 게임 캐릭터 음성 알림
-
-Claude Code 알림은 뜨는데 소리가 없고 밋밋했다. **peon-ping**을 쓰면 게임 캐릭터 음성으로 이벤트를 알려준다.
-- [peon-ping 공식 사이트](https://peonping.com/)
-- [GitHub](https://github.com/PeonPing/peon-ping)
-
-**설치**
-
-```bash
-brew install PeonPing/tap/peon-ping
-peon-ping-setup
-```
-
-`peon-ping-setup`을 실행하면 Claude Code hook 등록과 사운드팩 다운로드가 자동으로 진행된다.
-
-**SCV 팩으로 변경**
-
-기본은 워크래프트 피온 음성이다.
-
-```bash
-peon-ping packs install sc_scv
-peon-ping --pack sc_scv
-```
-
-**소리만 남기고 데스크탑 알림 끄기**
-
-`~/.claude/hooks/peon-ping/config.json` 수정:
-
-```json
-{
-  "active_pack": "sc_scv",
-  "desktop_notifications": false
-}
-```
-
-저장하면 바로 적용된다.
-
-<div style="border-bottom: 1px dashed var(--border);"></div>
-
 ## 모바일에서 Claude Code 사용
 
 ### Remote Control — 모바일 연결
