@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sungduk 건강 대시보드</title>
+<title>건강검진 결과지 분석</title>
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
@@ -467,8 +467,8 @@ tr:hover td { background: #101825; }
 
 <!-- Header -->
 <div class="header">
-  <h1>Sungduk 건강 대시보드</h1>
-  <div class="sub">마지막 검진 2026-05-04 &nbsp;·&nbsp; 분석 2026-05-12 &nbsp;·&nbsp; 만 29세 남성 177.7cm</div>
+  <h1>건강검진 결과지 분석</h1>
+  <div class="sub">마지막 검진 YYYY-MM-DD &nbsp;·&nbsp; 분석 YYYY-MM-DD &nbsp;·&nbsp; 30대 남성 (예시)</div>
 </div>
 
 <!-- 한눈에 보기 Hero -->
@@ -479,8 +479,8 @@ tr:hover td { background: #101825; }
         전체적으로 <span style="color:var(--good)">개선 중</span>입니다
       </div>
       <div class="hero-desc">
-        식단 관리만으로 9개월간 체중 -2.2kg · 허리 -5cm · 혈압 정상화 달성.<br>
-        공복혈당 단 1개 항목이 역행 중 — 지금이 차단 타이밍입니다.
+        식단 관리 중심으로 점진적 개선 — 체중·허리·혈압 모두 호전.<br><br>
+        특정 항목이 정상 상한 근접 — 조기 차단 타이밍.
       </div>
     </div>
     <div class="hero-stats">
@@ -499,55 +499,55 @@ tr:hover td { background: #101825; }
     </div>
   </div>
   <div class="hero-critical">
-    <strong style="color:var(--crit)">지금 가장 중요한 것:</strong> 공복혈당 91 — 조금 더 올라가면 당뇨 전단계. 간식 차단과 정제탄수 감소가 직접적인 해결책입니다.
+    <strong style="color:var(--crit)">지금 가장 중요한 것:</strong> 공복혈당이 정상 상한에 근접 — 간식 차단·정제탄수 감소가 직접 해결책.
   </div>
 </div>
 
 <div class="alert alert-r">
   <div class="alert-t">🚨 즉시 관리 필요</div>
-  공복혈당 91 — 100 넘으면 당뇨 전단계 진단. 5년간 88→90→89→88→91로 꾸준히 상승 중. 식단(간식 차단·정제탄수 감소)이 직접적으로 바꿀 수 있는 항목.
+  공복혈당 정상 상한 근접 — 100 넘으면 당뇨 전단계 기준. 다년간 점진 상승 추세. 식단(간식 차단·정제탄수 감소) 개입 가능 항목.
 </div>
 <div class="alert alert-y">
   <div class="alert-t">⚠️ 별도 의료 추적 필요 (식단·운동으로 해결 안 됨)</div>
-  비장 석회화 (2023 불균질→2025 석회화) → 소화기내과 CT/MRI 추적 &nbsp;|&nbsp; 심전도 좌축편위 → 매년 추적 &nbsp;|&nbsp; 비타민D → 칼마디 복용 계속 + 연 1회 수치 확인
+  특정 영상 소견 정기 추적 &nbsp;|&nbsp; 심전도 변형 매년 추적 &nbsp;|&nbsp; 비타민D 보충 + 연 1회 수치 확인
 </div>
 <div class="alert alert-g">
   <div class="alert-t">✅ 이미 잘 하고 있는 것</div>
-  비음주 · 오메가3·비타민C·비타민B·칼마디 복용 중 · 9개월 운동 없이 체중 -2.2kg 허리 -5cm 혈압 정상화
+  비음주 · 영양제 정기 복용 · 운동 없이도 체중·허리·혈압 점진 개선
 </div>
 
 <!-- 현재 수치 -->
-<div class="section-title">현재 수치 (2026.05)</div>
+<div class="section-title">현재 수치 (최근 검진)</div>
 
 <!-- Row 1: 4 cards — 공복혈당이 critical -->
 <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;">
   <div class="card">
     <div class="card-title">체중</div>
-    <div class="metric-big">72.4<span class="metric-unit">kg</span></div>
-    <div class="metric-change down-good">▼ -2.2kg (9개월, 운동 없이)</div>
+    <div class="metric-big">72.0<span class="metric-unit">kg</span></div>
+    <div class="metric-change down-good">▼ -0.5kg (점진 개선)</div>
     <div class="metric-sub">현실 목표: 74–76kg</div>
     <div class="mt-md"><span class="pill pill-warn">BMI 25.2 과체중</span></div>
   </div>
   <div class="card">
     <div class="card-title">허리둘레</div>
     <div class="metric-big">82<span class="metric-unit">cm</span></div>
-    <div class="metric-change down-good">▼ -5cm (9개월)</div>
+    <div class="metric-change down-good">▼ -1cm (점진 개선)</div>
     <div class="metric-sub">현실 목표: 77–79cm</div>
     <div class="mt-md"><span class="pill pill-ok">복부비만 기준 미만</span></div>
   </div>
   <div class="card">
     <div class="card-title">체지방률</div>
-    <div class="metric-big">21.5<span class="metric-unit">%</span></div>
-    <div class="metric-change down-good">▼ -1.3%p (9개월)</div>
+    <div class="metric-big">24.0<span class="metric-unit">%</span></div>
+    <div class="metric-change down-good">▼ -0.5%p (점진 개선)</div>
     <div class="metric-sub">현실 목표: 19–21%</div>
     <div class="mt-md"><span class="pill pill-warn">과지방 (기준 25%)</span></div>
   </div>
   <!-- Critical card -->
   <div class="card-critical">
     <div class="card-title">공복혈당 ⚠️</div>
-    <div class="metric-big">88<span class="metric-unit" style="color:#c06060">mg/dL</span></div>
-    <div class="metric-change up-bad">▲ 5년 상승 추세 (88→91)</div>
-    <div style="font-size:12px;color:#c06060;margin-top:4px;">기준: 100 = 당뇨 전단계</div>
+    <div class="metric-big">98<span class="metric-unit" style="color:#c06060">mg/dL</span></div>
+    <div class="metric-change up-bad">▲ 다년 상승 추세</div>
+    <div style="font-size:12px;color:#c06060;margin-top:4px;">기준: 100 = 당뇨 전단계 (정상 상한)</div>
     <div class="mt-md"><span class="pill pill-bad">상한선 2 남음</span></div>
   </div>
 </div>
@@ -555,28 +555,28 @@ tr:hover td { background: #101825; }
 <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;" class="mt-md">
   <div class="card">
     <div class="card-title">골격근량</div>
-    <div class="metric-big">35.2<span class="metric-unit">kg</span></div>
-    <div class="metric-change down-bad">▼ -0.5kg (9개월, 운동 0)</div>
+    <div class="metric-big">34.0<span class="metric-unit">kg</span></div>
+    <div class="metric-change down-bad">▼ 점진 개선</div>
     <div class="metric-sub">현실 목표: 34.5–35.5kg</div>
     <div class="mt-md"><span class="pill pill-ok">양호 유지 중</span></div>
   </div>
   <div class="card">
     <div class="card-title">내장지방</div>
-    <div class="metric-big">80.6<span class="metric-unit">cm²</span></div>
-    <div class="metric-change down-good">▼ -6.1 (9개월)</div>
+    <div class="metric-big">70.5<span class="metric-unit">cm²</span></div>
+    <div class="metric-change down-good">▼ 점진 개선</div>
     <div class="metric-sub">목표: &lt;65cm²</div>
     <div class="mt-md"><span class="pill pill-warn">개선 중</span></div>
   </div>
   <div class="card">
     <div class="card-title">혈압</div>
-    <div class="metric-big">113<span class="metric-unit">/74</span></div>
-    <div class="metric-change down-good">▼ 2025년 131/86 → 개선</div>
+    <div class="metric-big">122<span class="metric-unit">/79</span></div>
+    <div class="metric-change down-good">▼ 직전 검진 대비 개선</div>
     <div class="metric-sub">목표: 115/75 이하</div>
     <div class="mt-md"><span class="pill pill-warn">주의혈압 경계</span></div>
   </div>
   <div class="card">
     <div class="card-title">HDL 콜레스테롤</div>
-    <div class="metric-big">52<span class="metric-unit">mg/dL</span></div>
+    <div class="metric-big">43<span class="metric-unit">mg/dL</span></div>
     <div class="metric-change up-bad">낮은 수준 지속 (39–46)</div>
     <div class="metric-sub">목표: 55+</div>
     <div class="mt-md"><span class="pill pill-warn">유산소로만 올라감</span></div>
@@ -614,16 +614,16 @@ tr:hover td { background: #101825; }
 <div class="card">
   <table>
     <tr><th>항목</th><th>2022</th><th>2023</th><th>2024</th><th>2025</th><th>2026</th><th>추세</th></tr>
-    <tr><td>체중 (kg)</td><td>72.3</td><td>74.8</td><td class="td-bad">76.2↑</td><td>73.9</td><td class="td-ok">72.4</td><td><span class="pill pill-ok">개선 중</span></td></tr>
-    <tr><td>공복혈당 (mg/dL)</td><td>88</td><td>90</td><td>89</td><td>88</td><td class="td-bad">98↑</td><td><span class="pill pill-bad">상승 주의</span></td></tr>
-    <tr><td>HDL (mg/dL) ↑좋음</td><td>52</td><td class="td-bad">39↓</td><td>50</td><td>48</td><td>52</td><td><span class="pill pill-warn">낮은 수준</span></td></tr>
-    <tr><td>LDL (mg/dL) ↓좋음</td><td>102</td><td>98</td><td class="td-bad">133↑</td><td>102</td><td>99</td><td><span class="pill pill-ok">개선</span></td></tr>
+    <tr><td>체중 (kg)</td><td>72.0</td><td>72.5</td><td>73.0</td><td>72.5</td><td>72.0</td><td><span class="pill pill-ok">개선 중</span></td></tr>
+    <tr><td>공복혈당 (mg/dL)</td><td>90</td><td>92</td><td>91</td><td>90</td><td>92</td><td><span class="pill pill-bad">상승 주의</span></td></tr>
+    <tr><td>HDL (mg/dL) ↑좋음</td><td>46</td><td class="td-bad">39↓</td><td>45</td><td>42</td><td>43</td><td><span class="pill pill-warn">낮은 수준</span></td></tr>
+    <tr><td>LDL (mg/dL) ↓좋음</td><td>105</td><td>108</td><td>110</td><td>107</td><td class="td-ok">103</td><td><span class="pill pill-ok">개선</span></td></tr>
     <tr><td>ALT (U/L)</td><td>13</td><td>22</td><td>21</td><td>25</td><td>22</td><td><span class="pill pill-warn">상승 추세</span></td></tr>
     <tr><td>요산 (mg/dL)</td><td>6.6</td><td class="td-bad">7.7↑</td><td>7.5</td><td>6.7</td><td>6.7</td><td><span class="pill pill-warn">경계 유지</span></td></tr>
-    <tr><td>혈압 수축기</td><td>112</td><td>114</td><td>113</td><td class="td-bad">131↑</td><td class="td-ok">113</td><td><span class="pill pill-ok">개선</span></td></tr>
-    <tr><td>비타민D (ng/mL) ↑좋음</td><td>23.8</td><td class="td-bad">16.4↓</td><td class="td-gray">—</td><td class="td-ok">26.1</td><td class="td-gray">—</td><td><span class="pill pill-ok">칼마디 복용 중</span></td></tr>
-    <tr><td>골격근량 (kg)</td><td>34.8</td><td>35.0</td><td class="td-gray">—</td><td>35.8</td><td>35.2</td><td><span class="pill pill-warn">유지 (운동 필요)</span></td></tr>
-    <tr><td>내장지방 (cm²)</td><td>70.4</td><td>88.9</td><td class="td-gray">—</td><td>86.7</td><td class="td-ok">80.6</td><td><span class="pill pill-ok">개선 중</span></td></tr>
+    <tr><td>혈압 수축기</td><td>118</td><td>120</td><td>119</td><td>121</td><td class="td-ok">117</td><td><span class="pill pill-ok">개선</span></td></tr>
+    <tr><td>비타민D (ng/mL) ↑좋음</td><td>25.0</td><td>26.0</td><td class="td-gray">—</td><td class="td-ok">27.5</td><td class="td-gray">—</td><td><span class="pill pill-ok">보충 중</span></td></tr>
+    <tr><td>골격근량 (kg)</td><td>33.6</td><td>33.7</td><td class="td-gray">—</td><td>34.5</td><td>34.0</td><td><span class="pill pill-warn">유지 (운동 필요)</span></td></tr>
+    <tr><td>내장지방 (cm²)</td><td>70.0</td><td>72.0</td><td class="td-gray">—</td><td>71.5</td><td class="td-ok">70.5</td><td><span class="pill pill-ok">개선 중</span></td></tr>
   </table>
 </div>
 
@@ -638,22 +638,22 @@ tr:hover td { background: #101825; }
   <div class="card">
     <div class="card-title">체성분 — 12개월 현실 목표</div>
     <div class="prog-row">
-      <div class="prog-head"><span class="prog-name">체중 (72.4 → 목표 75kg)</span><span class="prog-val">22%</span></div>
+      <div class="prog-head"><span class="prog-name">체중 (72.0 → 목표 70kg)</span><span class="prog-val">22%</span></div>
       <div class="prog-bg"><div class="prog-fill bar-y" style="width:22%"></div></div>
       <div class="prog-note">-4.6kg 남음 &nbsp;·&nbsp; 월 0.4kg 감량 페이스</div>
     </div>
     <div class="prog-row">
-      <div class="prog-head"><span class="prog-name">체지방률 (21.5 → 목표 20%)</span><span class="prog-val">0%</span></div>
+      <div class="prog-head"><span class="prog-name">체지방률 (24.0 → 목표 20%)</span><span class="prog-val">0%</span></div>
       <div class="prog-bg"><div class="prog-fill bar-r" style="width:3%"></div></div>
       <div class="prog-note">-4%p 남음 &nbsp;·&nbsp; 지방량 -3.2kg 필요</div>
     </div>
     <div class="prog-row">
-      <div class="prog-head"><span class="prog-name">허리둘레 (78 → 목표 78cm)</span><span class="prog-val">0%</span></div>
+      <div class="prog-head"><span class="prog-name">허리둘레 (82 → 목표 78cm)</span><span class="prog-val">0%</span></div>
       <div class="prog-bg"><div class="prog-fill bar-r" style="width:3%"></div></div>
       <div class="prog-note">-4cm 남음 &nbsp;·&nbsp; 운동 시작하면 빨라짐</div>
     </div>
     <div class="prog-row">
-      <div class="prog-head"><span class="prog-name">골격근량 (35.2 → 목표 35.5kg)</span><span class="prog-val">0%</span></div>
+      <div class="prog-head"><span class="prog-name">골격근량 (34.0 → 목표 35.5kg)</span><span class="prog-val">0%</span></div>
       <div class="prog-bg"><div class="prog-fill bar-r" style="width:3%"></div></div>
       <div class="prog-note">+1.5kg 목표 &nbsp;·&nbsp; 초보자 이득으로 가능</div>
     </div>
@@ -661,24 +661,24 @@ tr:hover td { background: #101825; }
   <div class="card">
     <div class="card-title">혈액 — 12개월 현실 목표</div>
     <div class="prog-row">
-      <div class="prog-head"><span class="prog-name">공복혈당 (91 → 목표 92)</span><span class="prog-val">0%</span></div>
+      <div class="prog-head"><span class="prog-name">공복혈당 (98 → 목표 92)</span><span class="prog-val">0%</span></div>
       <div class="prog-bg"><div class="prog-fill bar-r" style="width:3%"></div></div>
       <div class="prog-note">⚠️ 상승 중 — 간식 차단이 직접 효과</div>
     </div>
     <div class="prog-row">
-      <div class="prog-head"><span class="prog-name">HDL (52 → 목표 52+)</span><span class="prog-val">0%</span></div>
+      <div class="prog-head"><span class="prog-name">HDL (43 → 목표 52+)</span><span class="prog-val">0%</span></div>
       <div class="prog-bg"><div class="prog-fill bar-r" style="width:3%"></div></div>
       <div class="prog-note">유산소 운동 시작 전까지 변화 없음</div>
     </div>
     <div class="prog-row">
-      <div class="prog-head"><span class="prog-name">LDL (99 → 목표 100)</span><span class="prog-val">30%</span></div>
+      <div class="prog-head"><span class="prog-name">LDL (112 → 목표 100)</span><span class="prog-val">30%</span></div>
       <div class="prog-bg"><div class="prog-fill bar-y" style="width:30%"></div></div>
       <div class="prog-note">식단 개선으로 달성 가능</div>
     </div>
     <div class="prog-row">
-      <div class="prog-head"><span class="prog-name">혈압 수축기 (118 → 목표 115)</span><span class="prog-val">55%</span></div>
+      <div class="prog-head"><span class="prog-name">혈압 수축기 (117 → 목표 115)</span><span class="prog-val">55%</span></div>
       <div class="prog-bg"><div class="prog-fill bar-g" style="width:55%"></div></div>
-      <div class="prog-note">2025년 131에서 많이 개선됨</div>
+      <div class="prog-note">직전 검진 수치에서 점진 개선</div>
     </div>
   </div>
 </div>
@@ -690,20 +690,20 @@ tr:hover td { background: #101825; }
   <div class="timeline">
     <div class="tl-item">
       <div class="tl-dot tl-done"></div>
-      <div class="tl-date">2025.08 · 시작점</div>
-      <div class="tl-title">81.8kg · 체지방 25.3% · 허리 87cm · 혈압 131/86</div>
+      <div class="tl-date">YYYY.MM · 시작점</div>
+      <div class="tl-title">73.0kg · 체지방 25% · 허리 85cm · 혈압 121/82</div>
       <div class="tl-body">운동 0, 식단 관리 없음</div>
     </div>
     <div class="tl-item">
       <div class="tl-dot tl-now"></div>
-      <div class="tl-date">2026.05 · 지금</div>
-      <div class="tl-title">72.4kg · 체지방 24% · 허리 82cm · 혈압 정상화</div>
-      <div class="tl-body">운동 없이 식단만으로 개선. 혈당 91만 역행 중.</div>
+      <div class="tl-date">YYYY.MM · 지금</div>
+      <div class="tl-title">72.0kg · 체지방 24% · 허리 82cm · 혈압 정상화</div>
+      <div class="tl-body">운동 없이 식단만으로 개선. 혈당 98만 역행 중.</div>
       <span class="tl-tag" style="background:var(--info-dim);color:var(--info);">현재 위치</span>
     </div>
     <div class="tl-item">
       <div class="tl-dot tl-next"></div>
-      <div class="tl-date">2026.07 (2개월 후) · 습관 형성</div>
+      <div class="tl-date">YYYY.MM (2개월 후) · 습관 형성</div>
       <div class="tl-title">단백질 80g+ 안정화 · 간식 차단 · 걷기 주 3회</div>
       <div class="tl-body">체중 78–79kg · 혈당 95 이하 목표 · 운동 루틴 시작</div>
       <span class="tl-tag" style="background:var(--warn-dim);color:var(--warn);">다음 목표</span>
@@ -743,7 +743,7 @@ tr:hover td { background: #101825; }
     <span class="ac-phase phase-1">지금 당장</span>
   </div>
   <div class="ac-body">끼니 사이 일체 없애기. 제로콜라·제로주스 → 물·블랙커피·무가향탄산수만. 인슐린이 떨어질 시간이 있어야 지방이 빠지고 혈당이 안정됩니다.</div>
-  <div class="ac-why">→ 공복혈당 91 억제 · HOMA-IR 인슐린저항성 개선</div>
+  <div class="ac-why">→ 공복혈당 98 억제 · HOMA-IR 인슐린저항성 개선</div>
   <div class="ac-note">첫 2주가 가장 힘듦. 단맛 갈구는 게 정상. 지나면 괜찮아짐.</div>
 </div>
 
@@ -834,16 +834,16 @@ tr:hover td { background: #101825; }
     <span class="ac-title">내분비내과 상담</span>
     <span class="ac-phase phase-1">올해 내 1회</span>
   </div>
-  <div class="ac-body">공복혈당 91 + HOMA-IR 1.08 + 5년 상승. HbA1c + 인슐린 패널 + 필요 시 OGTT(당부하검사).</div>
-  <div class="ac-why">→ 당뇨 전단계 조기 차단. 생활습관 교정 한계 파악.</div>
+  <div class="ac-body">공복혈당 98 + HOMA-IR 1.35 + 5년 상승. HbA1c + 인슐린 패널 + 필요 시 OGTT(당부하검사).</div>
+  <div class="ac-why">→ 정상 상한 근접 항목 조기 차단. 생활습관 교정 한계 파악.</div>
 </div>
 
 <div class="ac p">
   <div class="ac-head">
-    <span class="ac-title">소화기내과 상담 (비장 추적)</span>
+    <span class="ac-title">영상의학 정기 상담 (소견 추적)</span>
     <span class="ac-phase phase-2">6개월~1년 내</span>
   </div>
-  <div class="ac-body">비장 2023 불균질→2025 석회화. 복부 CT/MRI로 정밀 확인 필요. 좌상복부 통증·체중감소·피로 생기면 즉시.</div>
+  <div class="ac-body">특정 영상 소견 변화 추적. 영상의학 정밀 확인 필요. 관련 증상(통증·체중감소·피로) 발생 시 즉시.</div>
   <div class="ac-why">→ 식단·운동으로 해결 안 되는 구조적 소견. 의료 추적 필수.</div>
 </div>
 
@@ -972,16 +972,16 @@ tr:hover td { background: #101825; }
 <div class="section-title">현재 복용 영양제</div>
 <div class="card">
   <div class="supp-row" style="margin-bottom:12px">
-    <div class="supp supp-on">오메가3 ✅</div>
+    <div class="supp supp-on">영양제 (예시) ✅</div>
     <div class="supp supp-on">비타민C ✅</div>
     <div class="supp supp-on">종합 비타민B ✅</div>
-    <div class="supp supp-on">칼마디 (Ca+Mg+D) ✅</div>
+    <div class="supp supp-on">Ca+Mg+D 복합 ✅</div>
   </div>
   <div style="font-size:12px;color:var(--text-secondary);line-height:1.8">
     <strong style="color:var(--text-secondary)">확인 권장:</strong><br>
     · 오메가3 — EPA+DHA 합산 1,000mg 이상인지 (제품 뒷면 기능성분 확인)<br>
-    · 칼마디 — 비타민D3 함량 1,000 IU 이상인지 (마그네슘은 혈압·혈당·수면에 추가 도움)<br>
-    · 비타민D — 2026년 건강검진에서 미측정. 다음 검진 시 반드시 포함 요청
+    · Ca+Mg+D 복합 — 비타민D3 함량 1,000 IU 이상인지 (마그네슘은 혈압·혈당·수면에 추가 도움)<br>
+    · 비타민D — 특정 검진 시 미측정. 다음 검진 시 반드시 포함 요청
   </div>
 </div>
 
@@ -1136,14 +1136,14 @@ tr:hover td { background: #101825; }
       <div class="ci ci-r">□</div>
       <div class="ct">
         내분비내과 상담 예약 (올해 내 1회)
-        <div class="cr">→ 공복혈당 91 + HOMA-IR 1.08. 예약만 하면 끝. 나머지는 의사가 알려줌.</div>
+        <div class="cr">→ 공복혈당 98 + HOMA-IR 1.35. 예약만 하면 끝. 나머지는 의사가 알려줌.</div>
       </div>
     </li>
     <li>
       <div class="ci ci-y">□</div>
       <div class="ct">
         소화기내과 상담 예약 (6개월~1년 내 1회)
-        <div class="cr">→ 비장 석회화 추적. 식단·운동과 무관. 예약 후 기다리기만.</div>
+        <div class="cr">→ 특정 영상 소견 추적. 식단·운동과 무관. 예약 후 기다리기만.</div>
       </div>
     </li>
   </ul>
@@ -1157,8 +1157,8 @@ tr:hover td { background: #101825; }
     <li><div class="ci ci-r">□</div><div class="ct">허리둘레 측정 (주 1회)<div class="cr">줄자, 배꼽 위 1cm, 아침 공복</div></div></li>
     <li><div class="ci ci-y">□</div><div class="ct">인바디 (월 1회)<div class="cr">같은 기계·같은 시간·같은 조건 유지</div></div></li>
     <li><div class="ci ci-y">□</div><div class="ct">가정혈압 측정 (주 3–5회)<div class="cr">아침 기상 후, 저녁 취침 전</div></div></li>
-    <li><div class="ci ci-r">□</div><div class="ct">내분비내과 상담 예약 (올해 내)<div class="cr">공복혈당 91 + HOMA-IR 1.08 대응</div></div></li>
-    <li><div class="ci ci-y">□</div><div class="ct">소화기내과 상담 (6개월~1년 내)<div class="cr">비장 석회화 추적 — 식단·운동과 무관</div></div></li>
+    <li><div class="ci ci-r">□</div><div class="ct">내분비내과 상담 예약 (올해 내)<div class="cr">공복혈당 + HOMA-IR 정상 상한 근접 대응</div></div></li>
+    <li><div class="ci ci-y">□</div><div class="ct">소화기내과 상담 (6개월~1년 내)<div class="cr">특정 영상 소견 추적 — 식단·운동과 무관</div></div></li>
   </ul>
 </div>
 
@@ -1169,22 +1169,22 @@ tr:hover td { background: #101825; }
   <div class="resolve-item">
     <div class="resolve-icon">🔴</div>
     <div class="resolve-body">
-      <h4>비장 석회화 (2023 불균질 → 2025 석회화)</h4>
-      <p>과거 염증·감염의 구조적 흔적. 없어지지 않음. 운동·식단과 완전히 무관합니다. 대부분 양성이지만 소견이 변화했으므로 소화기내과 CT/MRI 추적이 별도로 필요합니다. 좌상복부 통증·체중감소·피로 생기면 즉시 진료.</p>
+      <h4>특정 영상 소견 (다년 추적 변화)</h4>
+      <p>과거 염증·감염의 구조적 흔적 가능성. 대부분 양성이지만 소견 변화가 있으면 영상의학 정밀 추적 필요. 관련 증상(통증·체중감소·피로) 발생 시 즉시 진료.</p>
     </div>
   </div>
   <div class="resolve-item">
     <div class="resolve-icon">🟡</div>
     <div class="resolve-body">
-      <h4>심전도 좌축편위 (2024)</h4>
+      <h4>심전도 변형 (특정 검진)</h4>
       <p>혈압 정상화되면 더 나빠지지는 않지만, 이미 생긴 구조적 소견이 되돌아가지는 않습니다. 매년 건강검진에서 추적. 흉통·두근거림·숨가쁨 생기면 즉시 심장내과 진료.</p>
     </div>
   </div>
   <div class="resolve-item">
     <div class="resolve-icon">🟡</div>
     <div class="resolve-body">
-      <h4>비타민D — 칼마디 복용 지속 필요</h4>
-      <p>실내 생활 특성상 햇빛만으로 유지되지 않습니다. 칼마디 복용을 멈추면 다시 떨어집니다 (2023년 16.4 사례). 운동으로 해결되는 게 아니라 보충제가 구조적으로 필요한 상태. 연 1회 수치 확인 필요 (2026년 미측정).</p>
+      <h4>비타민D — 보충제 지속 필요</h4>
+      <p>실내 생활 특성상 햇빛만으로 유지되지 않음. 보충제 중단 시 수치 하락 (과거 사례 기준). 운동으로 해결되는 게 아니라 보충제가 구조적으로 필요. 연 1회 수치 확인 필요.</p>
     </div>
   </div>
   <div class="resolve-item">
@@ -1198,7 +1198,7 @@ tr:hover td { background: #101825; }
 
 <div class="divider"></div>
 <div style="font-size:12px;color:var(--text-muted);text-align:center;padding-bottom:var(--space-2xl);letter-spacing:.03em;">
-  건강검진 데이터 2022–2026 &nbsp;·&nbsp; 다이어트 플랜 2026-05-12 &nbsp;·&nbsp; 의료 대체 아님
+  건강검진 데이터 5년치 &nbsp;·&nbsp; 다이어트 플랜 (예시) &nbsp;·&nbsp; 의료 대체 아님
 </div>
 
 </div><!-- /container -->
@@ -1208,7 +1208,7 @@ Chart.defaults.color = '#4a5668';
 Chart.defaults.font.family = "Pretendard, -apple-system, 'Apple SD Gothic Neo', sans-serif";
 Chart.defaults.font.size = 11;
 
-const LABELS = ['2022.11','2023.07','2021.56','2025.08','2026.05'];
+const LABELS = ['2021.10','2022.10','2023.10','2024.10','2025.10'];
 
 const opts = (yMin,yMax,ann={}) => ({
   responsive:true, maintainAspectRatio:true,
@@ -1250,8 +1250,8 @@ const line=(lbl,data,col,dash=false)=>({
 
 // 체중
 new Chart(document.getElementById('cWeight'),{type:'line',
-  data:{labels:LABELS,datasets:[line('체중 (kg)',[72.3,74.8,76.2,73.9,72.4],'#60a5fa')]},
-  options:opts(66,100,{
+  data:{labels:LABELS,datasets:[line('체중 (kg)',[72.0,72.5,73.0,72.5,72.0],'#60a5fa')]},
+  options:opts(70,92,{
     ok:  box(0,78.7,'#22c55e0d'), warn:box(78.7,86.5,'#f59e0b0a'), bad:box(86.5,100,'#ef44440a'),
     l1: hl(78.7,'#fbbf24bb','BMI 25 · 78.7kg',[4,3]),
   })
@@ -1259,7 +1259,7 @@ new Chart(document.getElementById('cWeight'),{type:'line',
 
 // 혈당
 new Chart(document.getElementById('cGluc'),{type:'line',
-  data:{labels:LABELS,datasets:[line('공복혈당 (mg/dL)',[88,90,89,88,91],'#f87171')]},
+  data:{labels:LABELS,datasets:[line('공복혈당 (mg/dL)',[90,92,91,90,92],'#f87171')]},
   options:opts(84,132,{
     ok:  box(70,100,'#22c55e0d'), warn:box(100,126,'#f59e0b0a'), bad:box(126,140,'#ef44440a'),
     l1: hl(100,'#fbbf24dd','100 당뇨 전단계',[4,3]),
@@ -1269,8 +1269,8 @@ new Chart(document.getElementById('cGluc'),{type:'line',
 // 혈압
 new Chart(document.getElementById('cBP'),{type:'line',
   data:{labels:LABELS,datasets:[
-    line('수축기 (mmHg)',[112,114,113,128,118],'#f87171'),
-    line('이완기 (mmHg)',[68,72,71,82,74],'#60a5fa'),
+    line('수축기 (mmHg)',[118,120,119,121,117],'#f87171'),
+    line('이완기 (mmHg)',[72,75,73,76,72],'#60a5fa'),
   ]},
   options:opts(58,148,{
     ok: box(0,120,'#22c55e08'), warn:box(120,130,'#f59e0b08'), bad:box(130,160,'#ef44440a'),
@@ -1282,8 +1282,8 @@ new Chart(document.getElementById('cBP'),{type:'line',
 // 콜레스테롤
 new Chart(document.getElementById('cLipid'),{type:'line',
   data:{labels:LABELS,datasets:[
-    line('HDL ↑이 좋음',[52,45,50,48,51],'#34d399'),
-    line('LDL ↓이 좋음',[102,98,118,104,99],'#f87171'),
+    line('HDL ↑이 좋음',[55,52,54,53,55],'#34d399'),
+    line('LDL ↓이 좋음',[105,108,110,107,103],'#f87171'),
   ]},
   options:opts(30,150,{
     l_hdl:   hl(40,'#f87171bb','HDL 하한 40',[4,3]),
@@ -1295,8 +1295,8 @@ new Chart(document.getElementById('cLipid'),{type:'line',
 // ALT/AST
 new Chart(document.getElementById('cAlt'),{type:'line',
   data:{labels:LABELS,datasets:[
-    line('ALT (U/L)',[16,20,19,22,20],'#fb923c'),
-    line('AST (U/L)',[15,17,19,18,20],'#a78bfa'),
+    line('ALT (U/L)',[15,18,16,17,15],'#fb923c'),
+    line('AST (U/L)',[16,17,18,17,16],'#a78bfa'),
   ]},
   options:opts(5,50,{
     ideal: box(0,20,'#22c55e0d'), ok:box(20,40,'#f59e0b08'), bad:box(40,55,'#ef44440a'),
@@ -1307,7 +1307,7 @@ new Chart(document.getElementById('cAlt'),{type:'line',
 
 // 요산
 new Chart(document.getElementById('cUric'),{type:'line',
-  data:{labels:LABELS,datasets:[line('요산 (mg/dL)',[6.2,7.1,6.8,6.3,6.4],'#34d399')]},
+  data:{labels:LABELS,datasets:[line('요산 (mg/dL)',[5.5,5.8,5.6,5.5,5.7],'#34d399')]},
   options:opts(5.5,9.5,{
     ok:  box(0,7.0,'#22c55e0d'), warn:box(7.0,8.0,'#f59e0b0a'), bad:box(8.0,10,'#ef44440a'),
     l1: hl(7.0,'#fbbf24cc','7.0 고요산혈증',[4,3]),
@@ -1317,7 +1317,7 @@ new Chart(document.getElementById('cUric'),{type:'line',
 
 // 내장지방
 new Chart(document.getElementById('cVisc'),{type:'line',
-  data:{labels:LABELS,datasets:[line('내장지방 (cm²)',[65.2,80.1,null,78.4,72.3],'#f472b6')]},
+  data:{labels:LABELS,datasets:[line('내장지방 (cm²)',[70.0,72.0,null,71.5,70.5],'#f472b6')]},
   options:opts(55,115,{
     ok:  box(0,100,'#22c55e0d'), warn:box(100,120,'#f59e0b08'),
     l1: hl(100,'#fbbf24bb','100 복부비만',[4,3]),
@@ -1326,7 +1326,7 @@ new Chart(document.getElementById('cVisc'),{type:'line',
 
 // 비타민D
 new Chart(document.getElementById('cVitD'),{type:'line',
-  data:{labels:LABELS,datasets:[line('비타민D3 (ng/mL)',[22.1,15.8,null,25.4,null],'#facc15')]},
+  data:{labels:LABELS,datasets:[line('비타민D3 (ng/mL)',[25.0,26.0,null,27.5,null],'#facc15')]},
   options:opts(8,38,{
     bad:   box(0,12,'#ef44440c'), warn:box(12,20,'#f59e0b0a'),
     ok:    box(20,30,'#22c55e0c'), ideal:box(30,40,'#3b82f60c'),

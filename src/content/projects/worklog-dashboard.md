@@ -1,11 +1,11 @@
 ---
 title: 근태 기록 분석
-description: 시프티 데이터를 기반으로 출퇴근 패턴, 야근, 출장·휴가 흐름을 시각화하는 대시보드.
+description: 근태 데이터를 기반으로 출퇴근 패턴, 야근, 출장·휴가 흐름을 시각화하는 대시보드.
 tags: [Dashboard, Data Visualization]
 period: "2026.05"
 icon: "⌚"
-image: "/projects/shiftee-dashboard.png"
-dashboard: "/dashboards/shiftee.html"
+image: "/projects/worklog-dashboard.png"
+dashboard: "/dashboards/worklog.html"
 ---
 
 ## 소개
