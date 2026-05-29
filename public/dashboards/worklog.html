@@ -782,7 +782,7 @@
   <div class="kpi">
     <div class="kpi-label">평균 실근무</div>
     <div class="kpi-value">7:33</div>
-    <div class="kpi-sub">점심·야근 저녁 제외</div>
+    <div class="kpi-sub">점심 1시간 제외</div>
   </div>
   <div class="kpi">
     <div class="kpi-label">야근일 (20시+)</div>
@@ -1147,7 +1147,7 @@
             if (_data.ef) html += `<div class="tt-row">실근무: <span>${hm(_data.ef)}</span></div>`;
             if (_data.ot) {
               const otNames={1:'유연야근',2:'일반야근',3:'장야근'};
-              // 야근 시간: ef - 9h (ef는 이미 점심·저녁 공제된 실근무)
+              // 야근 시간: ef - 9h (ef는 이미 점심 1시간 공제된 실근무)
               const otH = Math.max(0, _data.ef - 9);
               const otHH = Math.floor(otH);
               const otMM = Math.round((otH - otHH) * 60);
@@ -1428,8 +1428,8 @@ function timeRefAnnotations(minH, maxH, extra = {}) {
     a.ref16 = { type:'line', yMin:16, yMax:16, borderColor:refLineColor, borderWidth:1, borderDash:[3,5], drawTime:'beforeDatasetsDraw', label: labelOpts('16:00', refLabelColor) };
   if (20 >= minH && 20 <= maxH)
     a.ref20 = { type:'line', yMin:20, yMax:20, borderColor:otLineColor, borderWidth:1.5, borderDash:[4,3], drawTime:'beforeDatasetsDraw', label: labelOpts('20:00', otLabelColor) };
-  if (11.5 >= minH && 13 <= maxH)
-    a.lunch = { type:'box', yMin:11.5, yMax:13, backgroundColor:lunchFill, borderColor:lunchBorder, borderWidth:1, drawTime:'beforeDatasetsDraw', label: { content:'점심', display:true, position:{x:'start',y:'center'}, color:lunchLabel, font:{size:9}, backgroundColor:'transparent', padding:2 } };
+  if (12 >= minH && 13 <= maxH)
+    a.lunch = { type:'box', yMin:12, yMax:13, backgroundColor:lunchFill, borderColor:lunchBorder, borderWidth:1, drawTime:'beforeDatasetsDraw', label: { content:'점심', display:true, position:{x:'start',y:'center'}, color:lunchLabel, font:{size:9}, backgroundColor:'transparent', padding:2 } };
   if (18 >= minH && 19 <= maxH)
     a.dinner = { type:'box', yMin:18, yMax:19, backgroundColor:dinnerFill, borderColor:dinnerBorder, borderWidth:1, drawTime:'beforeDatasetsDraw', label: { content:'저녁', display:true, position:{x:'start',y:'center'}, color:dinnerLabel, font:{size:9}, backgroundColor:'transparent', padding:2 } };
   return { ...a, ...extra };
@@ -1660,8 +1660,8 @@ new Chart(document.getElementById('monthlyOT'), {
     {
       label: '출장',
       cells: [
-        { color: '#38BDF8', count: abroad.length,   unit: '일', name: '국외 출장', sub: '국제 학회 A·B 학회' },
-        { color: '#BAE6FD', count: domestic.length, unit: '일', name: '국내 출장', sub: 'KSSR·워크샵' },
+        { color: '#38BDF8', count: abroad.length,   unit: '일', name: '국외 출장', sub: '국제 학회 A·B' },
+        { color: '#BAE6FD', count: domestic.length, unit: '일', name: '국내 출장', sub: '국내 학회·워크샵' },
         { color: '#BAE6FD', count: domestic.length,  unit: '일', name: '국내 출장', sub: '국내 학회·워크샵 외' },
       ]
     },
