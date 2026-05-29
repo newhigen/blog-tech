@@ -129,11 +129,10 @@ const grouped = sorted.reduce<Record<string, typeof allPosts>>((acc, post) => {
               title={project.data.title}
               slug={project.id}
               description={project.data.description}
-              image={project.data.image}
-              imageLight={project.data.imageLight}
               period={project.data.period}
               icon={project.data.icon}
               category={project.data.category}
+              variant="minimal"
             />
           ))}
         </div>

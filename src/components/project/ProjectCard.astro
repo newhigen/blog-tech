@@ -8,32 +8,42 @@ interface Props {
   image?: string;
   imageLight?: string;
   category?: string;
+  variant?: 'list' | 'minimal';
 }
 
-const { title, slug, description, period, icon, image, imageLight, category } = Astro.props;
+const { title, slug, description, period, icon, image, imageLight, category, variant = 'list' } = Astro.props;
 const href = '/projects/' + slug;
 ---
 
-<article class='project-row' data-href={href} data-category={category}>
-  <div class='thumb'>
-    {(image || imageLight) ? (
-      <>
-        {imageLight && <img src={imageLight} alt={title} class='thumb-img light-only' loading='lazy' />}
-        {image && <img src={image} alt={title} class={'thumb-img' + (imageLight ? ' dark-only' : '')} loading='lazy' />}
-      </>
-    ) : (
-      <span class='thumb-icon'>{icon || '📁'}</span>
-    )}
-  </div>
-
-  <div class='row-body'>
-    <div class='row-head'>
-      <h2 class='title'>{title}</h2>
-      {period && <span class='period'>{period}</span>}
+{variant === 'minimal' ? (
+  <a class='project-min' href={href}>
+    {icon && <span class='min-icon'>{icon}</span>}
+    <span class='min-title'>{title}</span>
+    <span class='min-dots'>·····························································································································································</span>
+    {period && <span class='min-period'>{period}</span>}
+  </a>
+) : (
+  <article class='project-row' data-href={href} data-category={category}>
+    <div class='thumb'>
+      {(image || imageLight) ? (
+        <>
+          {imageLight && <img src={imageLight} alt={title} class='thumb-img light-only' loading='lazy' />}
+          {image && <img src={image} alt={title} class={'thumb-img' + (imageLight ? ' dark-only' : '')} loading='lazy' />}
+        </>
+      ) : (
+        <span class='thumb-icon'>{icon || '📁'}</span>
+      )}
     </div>
-    <p class='description'>{description}</p>
-  </div>
-</article>
+
+    <div class='row-body'>
+      <div class='row-head'>
+        <h2 class='title'>{title}</h2>
+        {period && <span class='period'>{period}</span>}
+      </div>
+      <p class='description'>{description}</p>
+    </div>
+  </article>
+)}
 
 <script>
   import { navigate } from 'astro:transitions/client';
@@ -54,52 +64,91 @@ const href = '/projects/' + slug;
 </script>
 
 <style>
+  /* ── minimal (home) ── */
+  .project-min {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0;
+    text-decoration: none;
+  }
+  .min-icon {
+    color: var(--text-tertiary);
+    flex-shrink: 0;
+    width: 1.1rem;
+    text-align: center;
+  }
+  .min-title {
+    font-size: 0.875rem;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-shrink: 1;
+    min-width: 0;
+    transition: opacity 0.15s ease;
+  }
+  .min-title:hover { opacity: 0.6; }
+  .min-dots {
+    flex: 1 1 2rem;
+    min-width: 2rem;
+    overflow: hidden;
+    letter-spacing: 5px;
+    color: var(--text-tertiary);
+    opacity: 0.5;
+    pointer-events: none;
+    white-space: nowrap;
+    line-height: 1.5rem;
+    height: 1.5rem;
+  }
+  .min-period {
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* ── list (projects page) ── */
   .project-row {
     display: flex;
     align-items: center;
     gap: 1.1rem;
-    padding: 1rem 0;
+    padding: 0.9rem 0.75rem;
+    margin: 0 -0.75rem;
+    border-radius: 10px;
     cursor: pointer;
-    border-bottom: 1px solid var(--border);
+    transition: background-color 0.15s ease;
   }
-  .project-row:last-child { border-bottom: none; }
+  .project-row:hover { background: var(--selection); }
 
   .thumb {
     flex-shrink: 0;
-    width: 116px;
+    width: 108px;
     aspect-ratio: 4 / 3;
     border-radius: 8px;
     border: 1px solid var(--border);
     overflow: hidden;
-    background: var(--selection);
+    background: var(--bg);
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  .thumb-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.25s ease;
-  }
-  .thumb-icon { font-size: 1.6rem; opacity: 0.6; }
-  .project-row:hover .thumb-img { transform: scale(1.04); }
+  .thumb-img { width: 100%; height: 100%; object-fit: cover; }
+  .thumb-icon { font-size: 1.5rem; opacity: 0.6; }
 
   .row-body { flex: 1; min-width: 0; }
   .row-head {
     display: flex;
     align-items: baseline;
     gap: 0.75rem;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.25rem;
   }
   .title {
-    font-size: 0.95rem;
+    font-size: 0.9375rem;
     font-weight: 600;
     color: var(--text-primary);
     margin: 0;
-    transition: opacity 0.15s ease;
   }
-  .project-row:hover .title { opacity: 0.6; }
   .period {
     margin-left: auto;
     flex-shrink: 0;
@@ -108,7 +157,7 @@ const href = '/projects/' + slug;
     white-space: nowrap;
   }
   .description {
-    font-size: 0.85rem;
+    font-size: 0.8375rem;
     line-height: 1.5;
     color: var(--text-secondary);
     margin: 0;
@@ -119,7 +168,7 @@ const href = '/projects/' + slug;
   }
 
   @media (max-width: 600px) {
-    .thumb { width: 88px; }
+    .thumb { width: 84px; }
     .project-row { gap: 0.85rem; }
   }
 
