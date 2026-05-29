@@ -34,9 +34,9 @@ article h4 {
 }
 
 article p {
-  color: rgba(0, 0, 0, 0.65);
+  color: var(--text-body);
   line-height: 1.8;
-  margin: 0 0 0.75rem;
+  margin: 0 0 1rem;
   font-size: 0.9375rem;
 }
 
@@ -64,10 +64,10 @@ article em {
 
 article ul,
 article ol {
-  color: rgba(0, 0, 0, 0.65);
+  color: var(--text-body);
   font-size: 0.9375rem;
-  line-height: 1.6;
-  margin: 0.15rem 0 0.4rem;
+  line-height: 1.8;
+  margin: 0.25rem 0 1rem;
   padding-left: 1.5rem;
 }
 
@@ -166,12 +166,12 @@ article table {
     white-space: nowrap;
   }
 
-  article h1 { font-size: 1.125rem; }
-  article h2 { font-size: 0.9375rem; }
-  article h3 { font-size: 0.875rem; }
-  article p, article ul, article ol { font-size: 0.8125rem; }
-  article pre { font-size: 0.6875rem; }
-  article table, article th, article td { font-size: 0.75rem; }
+  article h1 { font-size: 1.375rem; }
+  article h2 { font-size: 1.0625rem; }
+  article h3 { font-size: 0.9375rem; }
+  article p, article ul, article ol { font-size: 0.875rem; }
+  article pre { font-size: 0.75rem; }
+  article table, article th, article td { font-size: 0.8125rem; }
 }
 
 article th {
@@ -187,8 +187,3 @@ article td {
   border-bottom: 1px solid var(--border);
 }
 
-html.dark article p,
-html.dark article ul,
-html.dark article ol {
-  color: rgba(255, 255, 255, 0.65);
-}

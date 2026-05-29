@@ -105,6 +105,12 @@ for (const p of sortedProjects) {
   }
 
   .project-list {
-    max-width: 44rem;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.25rem 2.5rem;
+    max-width: 58rem;
+  }
+  @media (max-width: 700px) {
+    .project-list { grid-template-columns: 1fr; max-width: 40rem; }
   }
 </style>
