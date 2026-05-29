@@ -3,6 +3,7 @@ title: 가계부 자동 기입
 description: 매달 반복되는 가계부 정리, 이제 스크립트가 대신 해드려요. 복잡한 은행 명세서를 분석해서 나만의 후잉 가계부 형식으로 척척 바꿔줍니다.
 tags: [Python, Finance, MCP]
 period: "2026.03"
+category: AI in Daily Life
 icon: "₩"
 ---
 

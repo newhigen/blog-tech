@@ -14,24 +14,37 @@ function periodToNum(p?: string) {
 const sortedProjects = [...allProjects].sort(
   (a, b) => periodToNum(b.data.period) - periodToNum(a.data.period)
 );
+
+// Categories in order of most-recent project within each
+const seen = new Set<string>();
+const categories: string[] = [];
+for (const p of sortedProjects) {
+  const c = p.data.category;
+  if (!seen.has(c)) { seen.add(c); categories.push(c); }
+}
 ---
 
 <PageLayout title="Projects">
-  <div class="projects-grid">
+  {categories.length > 1 && (
+    <div class="filter-chips">
+      <button class="chip active" data-filter="all">All</button>
+      {categories.map(cat => (
+        <button class="chip" data-filter={cat}>{cat}</button>
+      ))}
+    </div>
+  )}
+
+  <div class="project-list">
     {sortedProjects.map(project => (
       <ProjectCard
         title={project.data.title}
         slug={project.id}
         description={project.data.description}
-        link={project.data.link}
-        link2={project.data.link2}
-        icon2={project.data.icon2}
-        github={project.data.github}
         image={project.data.image}
         imageLight={project.data.imageLight}
-        tags={project.data.tags}
         period={project.data.period}
         icon={project.data.icon}
+        category={project.data.category}
       />
     ))}
     {sortedProjects.length === 0 && (
@@ -40,25 +53,58 @@ const sortedProjects = [...allProjects].sort(
   </div>
 </PageLayout>
 
+<script>
+  function initFilter() {
+    const chips = document.querySelectorAll<HTMLButtonElement>('.filter-chips .chip');
+    if (chips.length === 0) return;
+    const rows = document.querySelectorAll<HTMLElement>('.project-list .project-row');
+
+    chips.forEach(chip => {
+      if (chip.dataset.bound) return;
+      chip.dataset.bound = '1';
+      chip.addEventListener('click', () => {
+        const filter = chip.dataset.filter;
+        chips.forEach(c => c.classList.toggle('active', c === chip));
+        rows.forEach(row => {
+          const show = filter === 'all' || row.dataset.category === filter;
+          row.style.display = show ? '' : 'none';
+        });
+        // re-apply last-child border after filtering
+        const visible = [...rows].filter(r => r.style.display !== 'none');
+        rows.forEach(r => r.style.borderBottom = '');
+        if (visible.length) visible[visible.length - 1].style.borderBottom = 'none';
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', initFilter);
+</script>
+
 <style>
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.9rem;
-    max-width: 64rem;
+  .filter-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+    max-width: 44rem;
+  }
+  .chip {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 0.8125rem;
+    color: var(--text-tertiary);
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+    transition: color 0.15s ease, background-color 0.15s ease;
+  }
+  .chip:hover { color: var(--text-secondary); }
+  .chip.active {
+    color: var(--text-primary);
+    background: var(--selection);
   }
 
-  @media (max-width: 900px) {
-    .projects-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      max-width: 42rem;
-    }
-  }
-
-  @media (max-width: 600px) {
-    .projects-grid {
-      grid-template-columns: 1fr;
-      max-width: 32rem;
-    }
+  .project-list {
+    max-width: 44rem;
   }
 </style>

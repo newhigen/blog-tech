@@ -3,6 +3,7 @@ title: 건강검진 결과지 분석
 description: 매년 받는 건강검진 결과, 쌓아두기만 하셨나요? 혈당과 혈압 수치가 어떻게 변하고 있는지 추세를 분석해서 알려드려요.
 tags: [Health, Dashboard]
 period: "2026.04"
+category: AI in Daily Life
 icon: "✚"
 image: "/projects/health-dashboard.png"
 imageLight: "/projects/health-dashboard-light.png"

@@ -3,6 +3,7 @@ title: 근태 기록 분석
 description: 숫자만 가득했던 근태 데이터가 차트로 다시 태어나요. 야근이 잦았던 시기와 나만의 출퇴근 리듬을 한눈에 찾아보세요.
 tags: [Dashboard, Data Visualization]
 period: "2026.06"
+category: AI in Daily Life
 icon: "⌚"
 image: "/projects/worklog-dashboard.png"
 dashboard: "/dashboards/worklog.html"

@@ -3,6 +3,7 @@ title: 블로그 운영
 description: 기록이 쌓이면 나만의 자산이 돼요. 옵시디언으로 편하게 쓰고, 아스트로로 예쁘게 배포하는 나만의 지식 관리 시스템을 만들었어요.
 tags: [Astro]
 period: "2025.07"
+category: AI in Daily Life
 icon: "¶"
 image: "/projects/blog-operation.png"
 imageLight: "/projects/blog-operation-light.png"
