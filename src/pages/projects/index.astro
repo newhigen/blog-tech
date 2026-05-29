@@ -14,51 +14,142 @@ function periodToNum(p?: string) {
 const sortedProjects = [...allProjects].sort(
   (a, b) => periodToNum(b.data.period) - periodToNum(a.data.period)
 );
+
+const seen = new Set<string>();
+const categories: string[] = [];
+for (const p of sortedProjects) {
+  const c = p.data.category;
+  if (!seen.has(c)) { seen.add(c); categories.push(c); }
+}
 ---
 
 <PageLayout title="Projects">
-  <div class="projects-grid">
+  {categories.length > 1 && (
+    <div class="filter-chips">
+      <button class="chip active" data-filter="all">All</button>
+      {categories.map(cat => (
+        <button class="chip" data-filter={cat}>{cat}</button>
+      ))}
+    </div>
+  )}
+
+  <div class="project-list">
     {sortedProjects.map(project => (
       <ProjectCard
         title={project.data.title}
         slug={project.id}
         description={project.data.description}
-        link={project.data.link}
-        link2={project.data.link2}
-        icon2={project.data.icon2}
-        github={project.data.github}
         image={project.data.image}
         imageLight={project.data.imageLight}
-        tags={project.data.tags}
         period={project.data.period}
         icon={project.data.icon}
+        category={project.data.category}
       />
     ))}
     {sortedProjects.length === 0 && (
       <p style="color: var(--text-secondary);">No projects yet.</p>
     )}
   </div>
+
+  <div id="proj-preview" aria-hidden="true"><img id="proj-preview-img" alt="" /></div>
 </PageLayout>
 
+<script>
+  function initFilter() {
+    const chips = document.querySelectorAll<HTMLButtonElement>('.filter-chips .chip');
+    if (chips.length === 0) return;
+    const items = document.querySelectorAll<HTMLElement>('.project-list .project-item');
+    chips.forEach(chip => {
+      if (chip.dataset.bound) return;
+      chip.dataset.bound = '1';
+      chip.addEventListener('click', () => {
+        const filter = chip.dataset.filter;
+        chips.forEach(c => c.classList.toggle('active', c === chip));
+        items.forEach(item => {
+          const show = filter === 'all' || item.dataset.category === filter;
+          item.style.display = show ? '' : 'none';
+        });
+      });
+    });
+  }
+
+  function initPreview() {
+    const preview = document.getElementById('proj-preview');
+    const img = document.getElementById('proj-preview-img') as HTMLImageElement | null;
+    if (!preview || !img) return;
+    if (!window.matchMedia('(pointer: fine)').matches) return;
+
+    const items = document.querySelectorAll<HTMLElement>('.project-item');
+    items.forEach(item => {
+      if (item.dataset.pbound) return;
+      item.dataset.pbound = '1';
+
+      item.addEventListener('mouseenter', () => {
+        const dark = document.documentElement.classList.contains('dark');
+        const src = dark ? item.dataset.imgDark : item.dataset.imgLight;
+        if (!src) return;
+        img.src = src;
+        preview.classList.add('show');
+      });
+      item.addEventListener('mousemove', (e) => {
+        const pad = 22;
+        const w = preview.offsetWidth, h = preview.offsetHeight;
+        let x = e.clientX + pad;
+        let y = e.clientY + pad;
+        if (x + w > window.innerWidth - 12) x = e.clientX - w - pad;
+        if (y + h > window.innerHeight - 12) y = Math.max(12, window.innerHeight - h - 12);
+        preview.style.left = x + 'px';
+        preview.style.top = y + 'px';
+      });
+      item.addEventListener('mouseleave', () => preview.classList.remove('show'));
+    });
+  }
+
+  document.addEventListener('astro:page-load', () => { initFilter(); initPreview(); });
+</script>
+
 <style>
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.9rem;
-    max-width: 64rem;
+  .filter-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+    max-width: 44rem;
   }
-
-  @media (max-width: 900px) {
-    .projects-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      max-width: 42rem;
-    }
+  .chip {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 0.8125rem;
+    color: var(--text-tertiary);
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+    transition: color 0.15s ease, background-color 0.15s ease;
   }
+  .chip:hover { color: var(--text-secondary); }
+  .chip.active { color: var(--text-primary); background: var(--selection); }
 
-  @media (max-width: 600px) {
-    .projects-grid {
-      grid-template-columns: 1fr;
-      max-width: 32rem;
-    }
+  .project-list { max-width: 44rem; }
+
+  /* hover preview */
+  #proj-preview {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 300px;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(6px) scale(0.97);
+    transition: opacity 0.16s ease, transform 0.16s ease;
+  }
+  #proj-preview.show { opacity: 1; transform: translateY(0) scale(1); }
+  #proj-preview img {
+    display: block;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.18);
+    background: var(--bg);
   }
 </style>

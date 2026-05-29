@@ -1,9 +1,12 @@
 ---
 title: 가계부 자동 기입
-description: 매달 반복되는 가계부 정리, 이제 스크립트가 대신 해드려요. 복잡한 은행 명세서를 분석해서 나만의 후잉 가계부 형식으로 척척 바꿔줍니다.
+description: 은행 명세서를 후잉 가계부 형식으로 자동 변환하는 스크립트.
 tags: [Python, Finance, MCP]
 period: "2026.03"
+category: AI in Daily Life
 icon: "₩"
+image: "/projects/whooing-tools.png"
+imageLight: "/projects/whooing-tools-light.png"
 ---
 
 ## 가계부 정리가
@@ -21,7 +24,7 @@ icon: "₩"
 복잡한 데이터를 정제해서 후잉 가계부에 딱 맞는 형식으로 바꿔드릴게요.
 
 ```mermaid
-flowchart LR
+flowchart TB
   subgraph 원천["은행·카드 명세서"]
     A1[A은행]
     A2[B은행]

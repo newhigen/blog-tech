@@ -1,8 +1,9 @@
 ---
 title: 보험 상품 비교 분석
-description: 복잡한 보험 제안서, 아직도 고민 중인가요? 두 상품의 차이를 한눈에 비교하고 30년 뒤의 손익까지 미리 시뮬레이션해봐요.
+description: 두 보험 상품을 한 기준으로 비교하고 30년 손익을 시뮬레이션.
 tags: [Insurance, Dashboard]
 period: "2026.05"
+category: AI in Daily Life
 icon: "⚖"
 image: "/projects/insurance-dashboard.png"
 dashboard: "/dashboards/insurance.html"
