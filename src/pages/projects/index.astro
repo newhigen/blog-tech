@@ -15,7 +15,6 @@ const sortedProjects = [...allProjects].sort(
   (a, b) => periodToNum(b.data.period) - periodToNum(a.data.period)
 );
 
-// Categories in order of most-recent project within each
 const seen = new Set<string>();
 const categories: string[] = [];
 for (const p of sortedProjects) {
@@ -51,33 +50,62 @@ for (const p of sortedProjects) {
       <p style="color: var(--text-secondary);">No projects yet.</p>
     )}
   </div>
+
+  <div id="proj-preview" aria-hidden="true"><img id="proj-preview-img" alt="" /></div>
 </PageLayout>
 
 <script>
   function initFilter() {
     const chips = document.querySelectorAll<HTMLButtonElement>('.filter-chips .chip');
     if (chips.length === 0) return;
-    const rows = document.querySelectorAll<HTMLElement>('.project-list .project-row');
-
+    const items = document.querySelectorAll<HTMLElement>('.project-list .project-item');
     chips.forEach(chip => {
       if (chip.dataset.bound) return;
       chip.dataset.bound = '1';
       chip.addEventListener('click', () => {
         const filter = chip.dataset.filter;
         chips.forEach(c => c.classList.toggle('active', c === chip));
-        rows.forEach(row => {
-          const show = filter === 'all' || row.dataset.category === filter;
-          row.style.display = show ? '' : 'none';
+        items.forEach(item => {
+          const show = filter === 'all' || item.dataset.category === filter;
+          item.style.display = show ? '' : 'none';
         });
-        // re-apply last-child border after filtering
-        const visible = [...rows].filter(r => r.style.display !== 'none');
-        rows.forEach(r => r.style.borderBottom = '');
-        if (visible.length) visible[visible.length - 1].style.borderBottom = 'none';
       });
     });
   }
 
-  document.addEventListener('astro:page-load', initFilter);
+  function initPreview() {
+    const preview = document.getElementById('proj-preview');
+    const img = document.getElementById('proj-preview-img') as HTMLImageElement | null;
+    if (!preview || !img) return;
+    if (!window.matchMedia('(pointer: fine)').matches) return;
+
+    const items = document.querySelectorAll<HTMLElement>('.project-item');
+    items.forEach(item => {
+      if (item.dataset.pbound) return;
+      item.dataset.pbound = '1';
+
+      item.addEventListener('mouseenter', () => {
+        const dark = document.documentElement.classList.contains('dark');
+        const src = dark ? item.dataset.imgDark : item.dataset.imgLight;
+        if (!src) return;
+        img.src = src;
+        preview.classList.add('show');
+      });
+      item.addEventListener('mousemove', (e) => {
+        const pad = 22;
+        const w = preview.offsetWidth, h = preview.offsetHeight;
+        let x = e.clientX + pad;
+        let y = e.clientY + pad;
+        if (x + w > window.innerWidth - 12) x = e.clientX - w - pad;
+        if (y + h > window.innerHeight - 12) y = Math.max(12, window.innerHeight - h - 12);
+        preview.style.left = x + 'px';
+        preview.style.top = y + 'px';
+      });
+      item.addEventListener('mouseleave', () => preview.classList.remove('show'));
+    });
+  }
+
+  document.addEventListener('astro:page-load', () => { initFilter(); initPreview(); });
 </script>
 
 <style>
@@ -99,18 +127,29 @@ for (const p of sortedProjects) {
     transition: color 0.15s ease, background-color 0.15s ease;
   }
   .chip:hover { color: var(--text-secondary); }
-  .chip.active {
-    color: var(--text-primary);
-    background: var(--selection);
-  }
+  .chip.active { color: var(--text-primary); background: var(--selection); }
 
-  .project-list {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.25rem 2.5rem;
-    max-width: 58rem;
+  .project-list { max-width: 44rem; }
+
+  /* hover preview */
+  #proj-preview {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 300px;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(6px) scale(0.97);
+    transition: opacity 0.16s ease, transform 0.16s ease;
   }
-  @media (max-width: 700px) {
-    .project-list { grid-template-columns: 1fr; max-width: 40rem; }
+  #proj-preview.show { opacity: 1; transform: translateY(0) scale(1); }
+  #proj-preview img {
+    display: block;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.18);
+    background: var(--bg);
   }
 </style>
