@@ -7,7 +7,7 @@ category: AI in Daily Life
 icon: "⌚"
 image: "/projects/worklog-dashboard.png"
 imageLight: "/projects/worklog-dashboard-light.png"
-dashboard: "/dashboards/worklog.html"
+dashboard: "/dashboards/worklog.html#sec-heatmap"
 ---
 
 ## 나만의 근무 리듬을
