@@ -3,7 +3,7 @@ title: Claude 워밍업
 description: 출근 전 Claude quota 윈도우를 미리 깨워 하루 토큰을 고르게 분산.
 tags: [Claude Code, CLI]
 period: "2026.05"
-category: Harness Engineering
+category: Agentic Workflow
 icon: "☀"
 github: https://github.com/newhigen/claude-warmup
 image: "/projects/claude-warmup.png"
