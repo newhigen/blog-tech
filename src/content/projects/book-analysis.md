@@ -2,7 +2,7 @@
 title: 독서 성향 분석
 description: 읽은 책 데이터로 독서 취향과 성향을 분석하는 리포트.
 tags: [Data Analysis, Python]
-period: "2026.05"
+period: "2026.06"
 category: AI in Daily Life
 icon: "❉"
 image: "/projects/book-analysis.png"
