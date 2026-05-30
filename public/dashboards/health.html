@@ -239,8 +239,10 @@ body {
   border-radius: var(--radius-lg);
   padding: var(--space-lg);
   border: 1px solid var(--bg-border);
-  transition: border-color .2s, background .2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.05);
+  transition: border-color .2s, box-shadow .2s, background .2s;
 }
+[data-theme="dark"] .card { box-shadow: none; }
 .card:hover { background: var(--bg-card-hover); border-color: var(--ct253048); }
 .card-sm {
   background: var(--bg-card);
@@ -302,8 +304,8 @@ body {
 .down-bad, .up-bad   { color: var(--bad); }
 .metric-sub { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
 
-/* ─── Critical metric card ─── */
-.card {
+/* ─── Critical metric card (opt-in via .card-crit) ─── */
+.card-crit {
   background: linear-gradient(135deg, var(--ct1a0808) 0%, var(--ct200f0f) 100%);
   border: 1px solid var(--ct4a1a1a);
   border-radius: var(--radius-lg);
@@ -313,16 +315,16 @@ body {
   box-shadow: 0 0 24px var(--crit-glow), inset 0 1px 0 var(--ct5a1a1a);
   transition: box-shadow .3s;
 }
-.card:hover { box-shadow: 0 0 36px var(--ctff6b6b40), inset 0 1px 0 var(--ct5a1a1a); }
-.card::before {
+.card-crit:hover { box-shadow: 0 0 36px var(--ctff6b6b40), inset 0 1px 0 var(--ct5a1a1a); }
+.card-crit::before {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 2px;
   background: linear-gradient(90deg, transparent, var(--crit), transparent);
 }
-.card .metric-big { color: var(--crit); }
-.card .card-title { color: var(--cta05050); }
+.card-crit .metric-big { color: var(--crit); }
+.card-crit .card-title { color: var(--cta05050); }
 
 /* ─── Progress ─── */
 .prog-row { margin-bottom: 18px; }
