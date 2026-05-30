@@ -3,7 +3,7 @@ title: Claude 대시보드 패치
 description: claude-dashboard status line을 개인 취향으로 커스터마이즈하는 패치.
 tags: [Claude Code, Customize]
 period: "2026.05"
-category: Agentic Workflow
+category: Better Claude Code
 icon: "⚙"
 github: https://github.com/newhigen/claude-dashboard-patches
 ---

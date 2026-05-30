@@ -3,7 +3,7 @@ title: Claude 워치
 description: 여러 Claude Code 창 중 답을 기다리는 창을 한눈에 보여주는 모니터.
 tags: [Claude Code, CLI]
 period: "2026.05"
-category: Agentic Workflow
+category: Better Claude Code
 icon: "◉"
 github: https://github.com/newhigen/claude-watch
 ---

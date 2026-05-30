@@ -15,36 +15,36 @@ const sortedProjects = [...allProjects].sort(
   (a, b) => periodToNum(b.data.period) - periodToNum(a.data.period)
 );
 
-const seen = new Set<string>();
-const categories: string[] = [];
+// 카테고리별 그룹핑 (등장 순서 유지)
+const byCategory = new Map<string, typeof sortedProjects>();
 for (const p of sortedProjects) {
   const c = p.data.category;
-  if (!seen.has(c)) { seen.add(c); categories.push(c); }
+  if (!byCategory.has(c)) byCategory.set(c, []);
+  byCategory.get(c)!.push(p);
 }
+const categories = [...byCategory.keys()];
 ---
 
 <PageLayout title="Projects">
-  {categories.length > 1 && (
-    <div class="filter-chips">
-      <button class="chip active" data-filter="all">All</button>
-      {categories.map(cat => (
-        <button class="chip" data-filter={cat}>{cat}</button>
-      ))}
-    </div>
-  )}
-
-  <div class="project-list">
-    {sortedProjects.map(project => (
-      <ProjectCard
-        title={project.data.title}
-        slug={project.id}
-        description={project.data.description}
-        image={project.data.image}
-        imageLight={project.data.imageLight}
-        period={project.data.period}
-        icon={project.data.icon}
-        category={project.data.category}
-      />
+  <div class="cat-columns">
+    {categories.map(cat => (
+      <div class="cat-col">
+        <h2 class="cat-label">{cat}</h2>
+        <div class="project-list">
+          {byCategory.get(cat)!.map(project => (
+            <ProjectCard
+              title={project.data.title}
+              slug={project.id}
+              description={project.data.description}
+              image={project.data.image}
+              imageLight={project.data.imageLight}
+              period={project.data.period}
+              icon={project.data.icon}
+              category={project.data.category}
+            />
+          ))}
+        </div>
+      </div>
     ))}
     {sortedProjects.length === 0 && (
       <p style="color: var(--text-secondary);">No projects yet.</p>
@@ -55,32 +55,13 @@ for (const p of sortedProjects) {
 </PageLayout>
 
 <script>
-  function initFilter() {
-    const chips = document.querySelectorAll<HTMLButtonElement>('.filter-chips .chip');
-    if (chips.length === 0) return;
-    const items = document.querySelectorAll<HTMLElement>('.project-list .project-item');
-    chips.forEach(chip => {
-      if (chip.dataset.bound) return;
-      chip.dataset.bound = '1';
-      chip.addEventListener('click', () => {
-        const filter = chip.dataset.filter;
-        chips.forEach(c => c.classList.toggle('active', c === chip));
-        items.forEach(item => {
-          const show = filter === 'all' || item.dataset.category === filter;
-          item.style.display = show ? '' : 'none';
-        });
-      });
-    });
-  }
-
   function initPreview() {
     const preview = document.getElementById('proj-preview');
     const img = document.getElementById('proj-preview-img') as HTMLImageElement | null;
     if (!preview || !img) return;
     if (!window.matchMedia('(pointer: fine)').matches) return;
 
-    const items = document.querySelectorAll<HTMLElement>('.project-item');
-    items.forEach(item => {
+    document.querySelectorAll<HTMLElement>('.project-item').forEach(item => {
       if (item.dataset.pbound) return;
       item.dataset.pbound = '1';
 
@@ -105,31 +86,29 @@ for (const p of sortedProjects) {
     });
   }
 
-  document.addEventListener('astro:page-load', () => { initFilter(); initPreview(); });
+  document.addEventListener('astro:page-load', initPreview);
 </script>
 
 <style>
-  .filter-chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    margin-bottom: 1rem;
-    max-width: 44rem;
+  .cat-columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem 3rem;
+    max-width: 58rem;
   }
-  .chip {
-    border: none;
-    background: none;
-    cursor: pointer;
-    font-size: 0.8125rem;
+  .cat-label {
+    font-size: 0.75rem;
+    font-weight: 500;
     color: var(--text-tertiary);
-    padding: 0.25rem 0.6rem;
-    border-radius: 999px;
-    transition: color 0.15s ease, background-color 0.15s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin: 0 0 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
   }
-  .chip:hover { color: var(--text-secondary); }
-  .chip.active { color: var(--text-primary); background: var(--selection); }
-
-  .project-list { max-width: 44rem; }
+  @media (max-width: 768px) {
+    .cat-columns { grid-template-columns: 1fr; gap: 2rem; }
+  }
 
   /* hover preview */
   #proj-preview {
