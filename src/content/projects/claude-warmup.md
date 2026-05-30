@@ -7,6 +7,7 @@ category: Better Claude Code
 icon: "☀"
 github: https://github.com/newhigen/claude-warmup
 image: "/projects/claude-warmup.png"
+dashboard: "/dashboards/claude-warmup.html"
 ---
 
 ## 소개
