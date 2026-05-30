@@ -1332,27 +1332,28 @@ tr:hover td { background: var(--ct101825); }
 </div><!-- /container -->
 
 <script>
-Chart.defaults.color = '#4a5668';
+(function(){try{document.documentElement.setAttribute('data-theme',localStorage.getItem('health-theme')||'light')}catch(e){document.documentElement.setAttribute('data-theme','light')}})();
+const V=k=>getComputedStyle(document.documentElement).getPropertyValue(k).trim();
 Chart.defaults.font.family = "Pretendard, -apple-system, 'Apple SD Gothic Neo', sans-serif";
 Chart.defaults.font.size = 11;
 
 const LABELS = ['2022','2023','2024','2025','2026'];
 
 const opts = (yMin,yMax,ann={}) => ({
-  responsive:true, maintainAspectRatio:true,
+  responsive:true, maintainAspectRatio:true, aspectRatio:3.4,
   interaction:{mode:'index',intersect:false},
   plugins:{
     legend:{
       display:true,position:'top',
-      labels:{boxWidth:10,padding:12,color:'#7e8fa8',font:{size:11,weight:500},usePointStyle:true,pointStyle:'circle'}
+      labels:{boxWidth:10,padding:10,color:V('--text-secondary'),font:{size:11,weight:500},usePointStyle:true,pointStyle:'circle'}
     },
     tooltip:{
-      backgroundColor:'#101c30',
-      borderColor:'#1e2d45',
+      backgroundColor:V('--bg-elevated'),
+      borderColor:V('--bg-border'),
       borderWidth:1,
-      titleColor:'#eef2ff',
-      bodyColor:'#c8d3e8',
-      padding:12,
+      titleColor:V('--text-primary'),
+      bodyColor:V('--text-body'),
+      padding:10,
       titleFont:{size:12,weight:600},
       bodyFont:{size:11},
       cornerRadius:8,
@@ -1361,8 +1362,8 @@ const opts = (yMin,yMax,ann={}) => ({
     annotation:{annotations:ann}
   },
   scales:{
-    x:{grid:{color:'#0e1928'},ticks:{color:'#4a5668',font:{size:10}}},
-    y:{min:yMin,max:yMax,grid:{color:'#0e1928'},ticks:{color:'#4a5668',font:{size:10},padding:6}}
+    x:{grid:{color:V('--bg-border')},ticks:{color:V('--text-muted'),font:{size:10}}},
+    y:{min:yMin,max:yMax,grid:{color:V('--bg-border')},ticks:{color:V('--text-muted'),font:{size:10},padding:6}}
   }
 });
 
@@ -1372,30 +1373,32 @@ const hl=(y,col,lbl,dash=[])=>({type:'line',yMin:y,yMax:y,borderColor:col,border
 
 const line=(lbl,data,col,dash=false)=>({
   label:lbl,data,borderColor:col,backgroundColor:col+'15',borderWidth:2,
-  pointBackgroundColor:'#080b11',pointBorderColor:col,pointBorderWidth:2,pointRadius:4,pointHoverRadius:6,
+  pointBackgroundColor:V('--bg-card'),pointBorderColor:col,pointBorderWidth:2,pointRadius:4,pointHoverRadius:6,
   tension:0.35,borderDash:dash?[5,4]:[],fill:false,spanGaps:true
 });
 
-// 체중
-new Chart(document.getElementById('cWeight'),{type:'line',
+let charts=[];
+function renderCharts(){
+  charts.forEach(c=>c.destroy()); charts=[];
+  Chart.defaults.color = V('--text-secondary');
+
+  charts.push(new Chart(document.getElementById('cWeight'),{type:'line',
   data:{labels:LABELS,datasets:[line('체중 (kg)',[70.5,71.0,70.5,71.0,70.5],'#60a5fa')]},
   options:opts(70,92,{
     ok:  box(0,78.7,'#22c55e0d'), warn:box(78.7,86.5,'#f59e0b0a'), bad:box(86.5,100,'#ef44440a'),
     l1: hl(78.7,'#fbbf24bb','BMI 25 · 78.7kg',[4,3]),
   })
-});
+}));
 
-// 혈당
-new Chart(document.getElementById('cGluc'),{type:'line',
+  charts.push(new Chart(document.getElementById('cGluc'),{type:'line',
   data:{labels:LABELS,datasets:[line('공복혈당 (mg/dL)',[86,88,87,89,88],'#f87171')]},
   options:opts(84,132,{
     ok:  box(70,100,'#22c55e0d'), warn:box(100,126,'#f59e0b0a'), bad:box(126,140,'#ef44440a'),
     l1: hl(100,'#fbbf24dd','100 당뇨 전단계',[4,3]),
   })
-});
+}));
 
-// 혈압
-new Chart(document.getElementById('cBP'),{type:'line',
+  charts.push(new Chart(document.getElementById('cBP'),{type:'line',
   data:{labels:LABELS,datasets:[
     line('수축기 (mmHg)',[116,118,117,119,118],'#f87171'),
     line('이완기 (mmHg)',[73,74,72,75,73],'#60a5fa'),
@@ -1405,10 +1408,9 @@ new Chart(document.getElementById('cBP'),{type:'line',
     l1: hl(130,'#fbbf24cc','130 고혈압',[4,3]),
     l2: hl(80,'#60a5fa66','이완기 80',[3,3]),
   })
-});
+}));
 
-// 콜레스테롤
-new Chart(document.getElementById('cLipid'),{type:'line',
+  charts.push(new Chart(document.getElementById('cLipid'),{type:'line',
   data:{labels:LABELS,datasets:[
     line('HDL ↑이 좋음',[48,46,47,45,46],'#34d399'),
     line('LDL ↓이 좋음',[125,130,128,133,131],'#f87171'),
@@ -1418,10 +1420,9 @@ new Chart(document.getElementById('cLipid'),{type:'line',
     l_ldl:   hl(130,'#fbbf24bb','LDL 경계 130',[4,3]),
     l_ldl100:hl(100,'#34d39966','LDL 최적 100',[3,3]),
   })
-});
+}));
 
-// ALT/AST
-new Chart(document.getElementById('cAlt'),{type:'line',
+  charts.push(new Chart(document.getElementById('cAlt'),{type:'line',
   data:{labels:LABELS,datasets:[
     line('ALT (U/L)',[22,26,24,28,25],'#fb923c'),
     line('AST (U/L)',[20,22,21,24,22],'#a78bfa'),
@@ -1431,29 +1432,26 @@ new Chart(document.getElementById('cAlt'),{type:'line',
     l1: hl(20,'#22c55e88','20 이상적',[3,3]),
     l2: hl(40,'#fbbf24bb','40 상한',[4,3]),
   })
-});
+}));
 
-// 요산
-new Chart(document.getElementById('cUric'),{type:'line',
+  charts.push(new Chart(document.getElementById('cUric'),{type:'line',
   data:{labels:LABELS,datasets:[line('요산 (mg/dL)',[6.5,6.8,6.7,7.0,6.9],'#34d399')]},
   options:opts(5.5,9.5,{
     ok:  box(0,7.0,'#22c55e0d'), warn:box(7.0,8.0,'#f59e0b0a'), bad:box(8.0,10,'#ef44440a'),
     l1: hl(7.0,'#fbbf24cc','7.0 고요산혈증',[4,3]),
     l2: hl(8.0,'#f87171cc','8.0 통풍 위험',[4,3]),
   })
-});
+}));
 
-// 내장지방
-new Chart(document.getElementById('cVisc'),{type:'line',
+  charts.push(new Chart(document.getElementById('cVisc'),{type:'line',
   data:{labels:LABELS,datasets:[line('내장지방 (cm²)',[78.0,80.0,null,82.0,81.0],'#f472b6')]},
   options:opts(55,115,{
     ok:  box(0,100,'#22c55e0d'), warn:box(100,120,'#f59e0b08'),
     l1: hl(100,'#fbbf24bb','100 복부비만',[4,3]),
   })
-});
+}));
 
-// 비타민D
-new Chart(document.getElementById('cVitD'),{type:'line',
+  charts.push(new Chart(document.getElementById('cVitD'),{type:'line',
   data:{labels:LABELS,datasets:[line('비타민D3 (ng/mL)',[18.0,17.0,null,16.0,null],'#facc15')]},
   options:opts(8,38,{
     bad:   box(0,12,'#ef44440c'), warn:box(12,20,'#f59e0b0a'),
@@ -1462,10 +1460,12 @@ new Chart(document.getElementById('cVitD'),{type:'line',
     l2: hl(20,'#fbbf24aa','20 충분',[4,3]),
     l3: hl(30,'#60a5fa88','30 이상적',[3,3]),
   })
-});
+}));
+}
+renderCharts();
 </script>
 <script>
-function healthToggleTheme(){var h=document.documentElement;var d=h.getAttribute('data-theme')==='dark';var n=d?'light':'dark';h.setAttribute('data-theme',n);document.getElementById('healthThemeBtn').textContent=n==='dark'?'◑ 다크':'◐ 라이트';try{localStorage.setItem('health-theme',n)}catch(e){}}
-(function(){var sv='light';try{sv=localStorage.getItem('health-theme')||'light'}catch(e){}document.documentElement.setAttribute('data-theme',sv);document.addEventListener('DOMContentLoaded',function(){var b=document.getElementById('healthThemeBtn');if(b)b.textContent=sv==='dark'?'◑ 다크':'◐ 라이트'});})();
+function healthToggleTheme(){var h=document.documentElement;var d=h.getAttribute('data-theme')==='dark';var n=d?'light':'dark';h.setAttribute('data-theme',n);document.getElementById('healthThemeBtn').textContent=n==='dark'?'◑ 다크':'◐ 라이트';try{localStorage.setItem('health-theme',n)}catch(e){}if(typeof renderCharts==='function')renderCharts();}
+document.addEventListener('DOMContentLoaded',function(){var b=document.getElementById('healthThemeBtn');if(b){var d=document.documentElement.getAttribute('data-theme')==='dark';b.textContent=d?'◑ 다크':'◐ 라이트';}});
 </script></body>
 </html>
