@@ -6,6 +6,7 @@ period: "2026.05"
 category: AI in Daily Life
 icon: "❉"
 image: "/projects/book-analysis.png"
+dashboard: "/dashboards/book-analysis.html"
 ---
 
 ## 소개
