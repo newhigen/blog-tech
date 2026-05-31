@@ -2,7 +2,7 @@
 title: 건강검진 결과지 분석
 description: 건강검진 수치의 연도별 추세를 추적하는 대시보드.
 tags: [Health, Dashboard]
-period: "2026.04"
+period: "2026.05.20"
 category: AI in Daily Life
 icon: "✚"
 image: "/projects/health-dashboard.png"

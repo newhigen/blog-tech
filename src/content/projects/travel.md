@@ -2,7 +2,7 @@
 title: 여행 계획 대시보드
 description: 가족 해외여행을 시기·비용·동선·체력까지 한 화면에서 비교하며 계획하는 플래너. 인원·금액은 익명화한 예시.
 tags: [Dashboard, Planning]
-period: "2026.05"
+period: "2026.05.22"
 category: AI in Daily Life
 icon: "✈"
 image: "/projects/travel.png"
