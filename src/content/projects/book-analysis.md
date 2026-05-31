@@ -23,6 +23,16 @@ dashboard: "/dashboards/book-analysis.html"
 
 <div class="dg"><div class="dg-node"><b>책 목록</b></div><div class="dg-arr">→</div><div class="dg-node"><b>분야·연도 정리</b></div><div class="dg-arr">→</div><div class="dg-node"><b>분포·흐름 계산</b></div><div class="dg-arr">→</div><div class="dg-node"><b>성향 분석</b></div><div class="dg-arr">→</div><div class="dg-node key"><b>리포트</b></div></div>
 
+## 만들어온 과정
+
+처음엔 토스 스타일이었다. 단일 액센트·여백 중심의 미학으로 다시 칠했다.
+
+### 토스 스타일
+![토스 스타일](/projects/book-before.png)
+
+### 지금
+![ai-pick 미학](/projects/book-after.png)
+
 ## 기능
 
 ### 데이터가 그리는 독서 자화상
