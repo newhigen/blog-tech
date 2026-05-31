@@ -152,3 +152,31 @@ const { Content, headings } = await render(project);
   :global(html.dark) .light-only { display: none; }
   :global(html:not(.dark)) .dark-only { display: none; }
 </style>
+
+<script>
+  // 블로그 테마(html.dark) ↔ 대시보드 iframe(data-theme) 동기화 (동일 출처)
+  function initDashboardThemeSync() {
+    const iframe = document.querySelector('.dashboard-frame') as HTMLIFrameElement | null;
+    if (!iframe) return;
+    const sync = () => {
+      const dark = document.documentElement.classList.contains('dark');
+      try {
+        const doc = iframe.contentDocument;
+        if (doc && doc.documentElement) {
+          doc.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+          const btn = doc.querySelector('[class*="theme-toggle"]') as HTMLElement | null;
+          if (btn) btn.style.display = 'none';
+        }
+      } catch (e) { /* cross-origin이면 무시 */ }
+    };
+    iframe.addEventListener('load', sync);
+    try {
+      if (iframe.contentDocument && iframe.contentDocument.readyState === 'complete') sync();
+    } catch (e) {}
+    new MutationObserver(sync).observe(document.documentElement, {
+      attributes: true, attributeFilter: ['class'],
+    });
+  }
+  document.addEventListener('astro:page-load', initDashboardThemeSync);
+  initDashboardThemeSync();
+</script>
