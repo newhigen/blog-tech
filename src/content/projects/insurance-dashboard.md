@@ -17,13 +17,7 @@ dashboard: "/dashboards/insurance.html"
 
 복잡한 건 걷어내고 핵심만 나란히 비교한다.
 
-```mermaid
-flowchart LR
-  A[보험 도메인 알기] --> B[내 보험 확인하기]
-  B --> C[상품 A vs B 비교]
-  C --> D[30년 시뮬레이션]
-  D --> E[최선의 선택!]
-```
+<div class="dg"><div class="dg-node"><b>보험 구조 파악</b></div><div class="dg-arr">→</div><div class="dg-node"><b>내 보험 정리</b></div><div class="dg-arr">→</div><div class="dg-node"><b>A vs B 비교</b></div><div class="dg-arr">→</div><div class="dg-node"><b>30년 시뮬</b></div><div class="dg-arr">→</div><div class="dg-node key"><b>판단</b></div></div>
 
 낯선 용어는 가이드 페이지에 따로 정리해뒀다.
 
@@ -37,6 +31,12 @@ flowchart LR
 ### 한국 보험 구조 반영
 - 실손 세대(1~4세대) 차이와 전환 기준
 - 갱신형 vs 비갱신형 보험료 추이
+
+## 성과
+
+- 두꺼운 제안서를 한 장 비교 리포트로 압축
+- 30년 누적 보험료·환급을 미리 시뮬 — 전엔 감으로 골랐다
+- 예시 데이터 기반이라, 실제 결정은 약관·설계사 확인 후가 맞다
 
 ## 배경
 

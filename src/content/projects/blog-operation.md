@@ -17,12 +17,7 @@ imageLight: "/projects/blog-operation-light.png"
 
 나에게 맞는 워크플로우를 만들었다.
 
-```mermaid
-flowchart LR
-  A[옵시디언에서 써요] --> B[깃에 올려요]
-  B --> C[자동으로 빌드돼요]
-  C --> D[전 세계에 배포 완료!]
-```
+<div class="dg"><div class="dg-node"><b>옵시디언</b></div><div class="dg-arr">→</div><div class="dg-node"><b>깃 push</b></div><div class="dg-arr">→</div><div class="dg-node"><b>자동 빌드</b></div><div class="dg-arr">→</div><div class="dg-node key"><b>배포</b></div></div>
 
 옵시디언에서 쓰고 푸시만 하면, 아스트로가 빌드해 배포한다.
 
@@ -36,6 +31,12 @@ flowchart LR
 - **독서 히트맵** — 언제 얼마나 읽었는지
 - **목차 자동 생성** — 긴 글도 길 잃지 않게
 - **대시보드 카드** — 분석 대시보드를 블로그에 바로 띄우는 시스템
+
+## 성과
+
+- 옵시디언에서 push만 하면 자동 빌드·배포 — 전엔 수동이었다
+- 플랫폼이 닫혀도 글이 남는다. 기록을 온전히 소유
+- 히트맵·목차·대시보드 카드를 필요할 때 직접 붙인다
 
 ## 배경
 

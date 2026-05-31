@@ -17,21 +17,7 @@ imageLight: "/projects/whooing-tools-light.png"
 
 데이터를 정제해 후잉 가계부 형식으로 바꾼다.
 
-```mermaid
-flowchart TB
-  subgraph 원천["은행·카드 명세서"]
-    A1[A은행]
-    A2[B은행]
-    A3[C카드]
-    A4[D카드]
-  end
-
-  A1 & A2 & A3 & A4 --> B[파서가 읽어와요]
-  B --> C[거래 내역을 분석해요]
-  C --> D[나만의 규칙으로 매핑해요]
-  D --> E[후잉용 CSV 완성!]
-  E --> F[가계부 기입 완료]
-```
+<div class="dg"><div class="dg-stack"><div class="dg-node">A은행</div><div class="dg-node">B은행</div><div class="dg-node">C카드</div><div class="dg-node">D카드</div></div><div class="dg-arr">→</div><div class="dg-node"><b>파서</b></div><div class="dg-arr">→</div><div class="dg-node"><b>분석</b></div><div class="dg-arr">→</div><div class="dg-node"><b>매핑</b></div><div class="dg-arr">→</div><div class="dg-node key"><b>후잉 CSV</b></div></div>
 
 글자만 바꾸는 게 아니다. 매핑 규칙을 따로 두어, 거래처를 일일이 코드로 짤 필요가 없다. 정규식과 키워드로 분류 체계를 만든다.
 
@@ -46,6 +32,12 @@ flowchart TB
 ### 후잉 지원
 - 계정·항목 관리 (자산~지출)
 - 차변·대변 양변 동시 기록
+
+## 성과
+
+- 매달 한 시간 가까이 걸리던 정산이 10분 안쪽으로 — 내 경험상
+- 매핑 규칙으로 매번 같은 기준으로 분류된다. 전엔 거래처마다 손봤다
+- 은행별로 다른 형식을 한 파서로 흡수
 
 ## 배경
 

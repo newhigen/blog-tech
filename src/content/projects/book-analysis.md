@@ -17,13 +17,7 @@ dashboard: "/dashboards/book-analysis.html"
 
 책 데이터(제목·분야·연도)를 정리해 독서 리포트로 만든다.
 
-```mermaid
-flowchart LR
-  A[읽은 책 목록] --> B[분야·연도 정리]
-  B --> C[분포·흐름 계산]
-  C --> D[성향 분석]
-  D --> E[독서 리포트 완성!]
-```
+<div class="dg"><div class="dg-node"><b>책 목록</b></div><div class="dg-arr">→</div><div class="dg-node"><b>분야·연도 정리</b></div><div class="dg-arr">→</div><div class="dg-node"><b>분포·흐름 계산</b></div><div class="dg-arr">→</div><div class="dg-node"><b>성향 분석</b></div><div class="dg-arr">→</div><div class="dg-node key"><b>리포트</b></div></div>
 
 ## 기능
 
@@ -31,6 +25,12 @@ flowchart LR
 - **분야 분포** — 어떤 주제를 주로 읽는지
 - **시기별 흐름** — 연도별 독서량과 관심 변화
 - **성향 요약** — 데이터에서 드러나는 취향. 다만 해석엔 주관이 섞이니 하나의 관점으로 본다
+
+## 성과
+
+- 막연하던 취향이 분야 분포·시기 흐름으로 드러난다
+- 책 데이터만 있으면 리포트가 자동으로 갱신된다
+- 다만 책 목록이 사람의 전부는 아니니, 가벼운 자화상으로 본다
 
 ## 배경
 

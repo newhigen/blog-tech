@@ -18,13 +18,7 @@ dashboard: "/dashboards/health.html"
 
 검진 PDF에 잠든 수치를 꺼내 건강 지도로 만든다.
 
-```mermaid
-flowchart LR
-  A[검진 PDF] --> B[수치를 추출해요]
-  B --> C[정상 범위와 비교해요]
-  C --> D[변화 추세를 분석해요]
-  D --> E[건강 인사이트 완성!]
-```
+<div class="dg"><div class="dg-node"><b>검진 PDF</b></div><div class="dg-arr">→</div><div class="dg-node"><b>수치 추출</b></div><div class="dg-arr">→</div><div class="dg-node"><b>정상범위 비교</b></div><div class="dg-arr">→</div><div class="dg-node"><b>추세 분석</b></div><div class="dg-arr">→</div><div class="dg-node key"><b>인사이트</b></div></div>
 
 빌드 한 번으로 5년 치 기록과 추세 차트가 최신으로 갱신된다.
 
@@ -38,6 +32,12 @@ flowchart LR
 ### 대시보드
 - 개선 중인지 주의인지 상단 카드에서 바로
 - 차트에 정상 범위를 표시해 내 위치를 가늠
+
+## 성과
+
+- 흩어진 검진 PDF를 빌드 한 번으로 5년 추세로 묶는다
+- 수치 하나가 아니라 흐름·방향이 보인다 — 전엔 그해 결과만 봤다
+- 다만 의학 판단을 대신하진 않는다. 참고용이다
 
 ## 배경
 

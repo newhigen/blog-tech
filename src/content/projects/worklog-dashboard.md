@@ -18,13 +18,7 @@ dashboard: "/dashboards/worklog.html#sec-heatmap"
 
 복잡한 데이터를 정리해 근태 지도로 만든다.
 
-```mermaid
-flowchart LR
-  A[근태 엑셀 파일] --> B[데이터를 정리해요]
-  B --> C[통계를 계산해요]
-  C --> D[차트를 그려요]
-  D --> E[나만의 대시보드 완성!]
-```
+<div class="dg"><div class="dg-node"><b>근태 엑셀</b></div><div class="dg-arr">→</div><div class="dg-node"><b>정리</b></div><div class="dg-arr">→</div><div class="dg-node"><b>통계 계산</b></div><div class="dg-arr">→</div><div class="dg-node"><b>차트</b></div><div class="dg-arr">→</div><div class="dg-node key"><b>대시보드</b></div></div>
 
 800일 넘는 기록에서 13개 차트와 주요 지표를 자동으로 뽑는다.
 
@@ -40,6 +34,12 @@ flowchart LR
 - 중요한 지표는 상단 카드에 모아 한눈에
 - 자주 나타나는 패턴은 부드러운 색, 야근은 선명한 색
 - 15분 단위 분포와 연간 히트맵
+
+## 성과
+
+- 800일 넘는 기록을 수작업 없이 자동 집계 — 전엔 엑셀로 묵혀뒀다
+- 출근 변곡점·야근 등급을 자동 탐지해, 직접 세지 않아도 된다
+- 1년 근무 리듬을 13개 차트 한 화면으로
 
 ## 배경
 
