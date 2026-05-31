@@ -15,6 +15,17 @@ const { title, slug, description, period, icon, image, imageLight, category, var
 const href = '/projects/' + slug;
 const previewDark = image || imageLight || '';
 const previewLight = imageLight || image || '';
+
+// period가 일(日)까지 있으면(YYYY.MM.DD) 요일을 계산해 "(요일)"을 붙인다. 월 단위(YYYY.MM)는 그대로.
+const WD = ['일', '월', '화', '수', '목', '금', '토'];
+function periodLabel(p?: string): string | undefined {
+  if (!p) return p;
+  const m = p.match(/^(\d{4})\.(\d{2})\.(\d{2})$/);
+  if (!m) return p;
+  const d = new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
+  return `${p} (${WD[d.getDay()]})`;
+}
+const periodText = periodLabel(period);
 ---
 
 {variant === 'minimal' ? (
@@ -22,7 +33,7 @@ const previewLight = imageLight || image || '';
     {icon && <span class='min-icon'>{icon}</span>}
     <span class='min-title'>{title}</span>
     <span class='min-dots'>·····························································································································································</span>
-    {period && <span class='min-period'>{period}</span>}
+    {periodText && <span class='min-period'>{periodText}</span>}
   </a>
 ) : (
   <a
@@ -35,7 +46,7 @@ const previewLight = imageLight || image || '';
     {icon && <span class='pi-icon'>{icon}</span>}
     <span class='pi-title'>{title}</span>
     <span class='pi-desc'>{description}</span>
-    {period && <span class='pi-period'>{period}</span>}
+    {periodText && <span class='pi-period'>{periodText}</span>}
   </a>
 )}
 
