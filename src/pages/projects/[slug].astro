@@ -143,10 +143,12 @@ const { Content, headings } = await render(project);
 
   .dashboard-frame {
     width: 100%;
-    aspect-ratio: 3 / 2;
-    height: auto;
+    height: 460px;
     border: none;
     display: block;
+  }
+  @media (max-width: 600px) {
+    .dashboard-frame { height: 360px; }
   }
 
   :global(html.dark) .light-only { display: none; }
