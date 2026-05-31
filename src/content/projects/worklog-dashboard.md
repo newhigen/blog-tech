@@ -2,7 +2,7 @@
 title: 근태 기록 분석
 description: 근태 데이터로 야근 시기와 출퇴근 리듬을 시각화.
 tags: [Dashboard, Data Visualization]
-period: "2026.06"
+period: "2026.05"
 category: AI in Daily Life
 icon: "⌚"
 image: "/projects/worklog-dashboard.png"
