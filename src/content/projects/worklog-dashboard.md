@@ -8,6 +8,16 @@ icon: "⌚"
 image: "/projects/worklog-dashboard.png"
 imageLight: "/projects/worklog-dashboard-light.png"
 dashboard: "/dashboards/worklog.html#sec-heatmap"
+timeline:
+  - img: "/projects/worklog-v1.png"
+    label: "다크로 시작"
+    intent: "다크 테마로 출발 — 일단 보이게"
+  - img: "/projects/worklog-v2.png"
+    label: "히트맵 추가"
+    intent: "연간 히트맵을 더해 — 시기 패턴이 보이게"
+  - img: "/projects/worklog-v3.png"
+    label: "색 규칙 · 완성"
+    intent: "야근에 색 규칙 — 한눈에 강조되게"
 ---
 
 ## 문제 — 근태 엑셀은 그냥 묵힌다
@@ -25,19 +35,6 @@ dashboard: "/dashboards/worklog.html#sec-heatmap"
 <div class="dg"><div class="dg-node"><b>근태 엑셀</b></div><div class="dg-arr">→</div><div class="dg-node"><b>정리</b></div><div class="dg-arr">→</div><div class="dg-node"><b>통계 계산</b></div><div class="dg-arr">→</div><div class="dg-node"><b>차트</b></div><div class="dg-arr">→</div><div class="dg-node key"><b>대시보드</b></div></div>
 
 800일 넘는 기록에서 13개 차트와 주요 지표를 자동으로 뽑는다.
-
-## 만들어온 과정
-
-다크 테마로 시작해 라이트로 바꾸고, 연간 히트맵을 더하고, 야근에 색 규칙을 입히며 지금 모습이 됐다. (실데이터라 화면은 흐리게 처리 — 디자인 변화만 본다)
-
-### 다크로 시작
-![다크 초기](/projects/worklog-v1.png)
-
-### 히트맵 추가
-![히트맵 추가](/projects/worklog-v2.png)
-
-### 색 규칙 · 완성
-![완성](/projects/worklog-v3.png)
 
 ## 기능
 

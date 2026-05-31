@@ -7,6 +7,10 @@ category: AI in Daily Life
 icon: "❉"
 image: "/projects/book-analysis.png"
 dashboard: "/dashboards/book-analysis.html"
+timeline:
+  - img: "/projects/book-before.png"
+    label: "토스 스타일"
+    intent: "친근체였지만 내 색이 아니었다 — polished로"
 ---
 
 ## 문제 — 독서 기록엔 내가 담긴다
@@ -22,16 +26,6 @@ dashboard: "/dashboards/book-analysis.html"
 책 데이터(제목·분야·연도)를 정리해 독서 리포트로 만든다.
 
 <div class="dg"><div class="dg-node"><b>책 목록</b></div><div class="dg-arr">→</div><div class="dg-node"><b>분야·연도 정리</b></div><div class="dg-arr">→</div><div class="dg-node"><b>분포·흐름 계산</b></div><div class="dg-arr">→</div><div class="dg-node"><b>성향 분석</b></div><div class="dg-arr">→</div><div class="dg-node key"><b>리포트</b></div></div>
-
-## 만들어온 과정
-
-처음엔 토스 스타일이었다. 단일 액센트·여백 중심의 미학으로 다시 칠했다.
-
-### 토스 스타일
-![토스 스타일](/projects/book-before.png)
-
-### 지금
-![ai-pick 미학](/projects/book-after.png)
 
 ## 기능
 
