@@ -2,7 +2,7 @@
 title: Claude Code 트래킹
 description: 릴리스마다 "오늘 써볼 만한 것"을 골라주는 changelog 큐레이션.
 tags: [Claude Code, Curation]
-period: "2026.05"
+period: "2026.05.28"
 category: Better Claude Code
 icon: "◐"
 link: https://ai.sungd.uk
