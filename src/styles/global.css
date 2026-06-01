@@ -133,6 +133,28 @@ pre {
   background-color: var(--astro-code-background);
 }
 
+/* shiki dual-theme (defaultColor: false) — 코드블록 라이트/다크 동기화 */
+pre.astro-code {
+  background-color: var(--shiki-light-bg);
+  color: var(--shiki-light);
+}
+pre.astro-code span { color: var(--shiki-light); }
+html.dark pre.astro-code {
+  background-color: var(--shiki-dark-bg);
+  color: var(--shiki-dark);
+}
+html.dark pre.astro-code span { color: var(--shiki-dark); }
+
+/* 개념 도식 (.dg) — mermaid 대체, 테마 변수로 다크 자동 */
+.dg { display: flex; align-items: stretch; gap: 7px; flex-wrap: wrap; padding: 14px; background: var(--code-bg); border-radius: 12px; margin: 1.25rem 0; }
+.dg-node { flex: 1; min-width: 84px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 12px 9px; background: var(--bg); border: 1px solid var(--border); border-radius: 9px; font-size: 0.85rem; font-weight: 600; color: var(--text-body); }
+.dg-node.key { border-color: #3b82f6; color: #3b82f6; }
+html.dark .dg-node.key { border-color: #60a5fa; color: #60a5fa; }
+.dg-arr { display: flex; align-items: center; color: var(--text-tertiary); font-size: 1rem; }
+.dg-stack { display: flex; flex-direction: column; gap: 4px; flex: 1; }
+.dg-stack .dg-node { padding: 7px; font-size: 0.8rem; min-width: 0; }
+@media (max-width: 520px) { .dg { flex-direction: column; } .dg-arr { transform: rotate(90deg); } }
+
 code:not(pre code) {
   padding: 0.1em 0.35em;
   border-radius: 4px;
