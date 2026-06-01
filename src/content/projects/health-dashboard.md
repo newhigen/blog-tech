@@ -8,6 +8,12 @@ icon: "✚"
 image: "/projects/health-dashboard.png"
 imageLight: "/projects/health-dashboard-light.png"
 dashboard: "/dashboards/health.html"
+intro:
+  summary: "건강검진 수치를 연도별 추세선으로 추적해, 한 시점이 아니라 변화의 방향을 보는 대시보드."
+  use:
+    - "검진 결과 수치를 연도별로 모은다"
+    - "추세 인사이트로 오르내림의 방향을 본다"
+    - "정상 범위 대비 내 위치를 가늠한다 (참고용)"
 ---
 
 ## 문제 — 건강은 점이 아니라 선이다

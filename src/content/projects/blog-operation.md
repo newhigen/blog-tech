@@ -7,6 +7,12 @@ category: AI in Daily Life
 icon: "¶"
 image: "/projects/blog-operation.png"
 imageLight: "/projects/blog-operation-light.png"
+intro:
+  summary: "옵시디언으로 쓰고 아스트로로 배포하는 개인 지식 관리 시스템. 글을 플랫폼에 갇히지 않고 소유한다."
+  use:
+    - "옵시디언에 글을 쓰고 push한다"
+    - "자동 빌드·배포로 생각·기술 두 채널에 나뉜다"
+    - "히트맵·목차·대시보드 카드를 필요할 때 붙인다"
 ---
 
 ## 문제 — 내 글을 온전히 소유하고 싶다

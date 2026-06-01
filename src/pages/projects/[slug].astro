@@ -19,6 +19,26 @@ const { Content, headings } = await render(project);
 ---
 
 <PageLayout title={project.data.title} description={project.data.description} headings={headings}>
+  {project.data.intro && (
+    <section class="intro-card">
+      {project.data.intro.summary && <p class="intro-summary">{project.data.intro.summary}</p>}
+      {project.data.intro.use && project.data.intro.use.length > 0 && (
+        <div class="intro-use">
+          <span class="intro-eyebrow">이렇게 쓴다</span>
+          <ol class="intro-steps">
+            {project.data.intro.use.map((u: string, i: number) => (
+              <li><span class="intro-num">{i + 1}</span><span>{u}</span></li>
+            ))}
+          </ol>
+        </div>
+      )}
+      {project.data.tags && project.data.tags.length > 0 && (
+        <div class="intro-tags">
+          {project.data.tags.map((t: string) => (<span class="intro-tag">{t}</span>))}
+        </div>
+      )}
+    </section>
+  )}
   {project.data.dashboard && project.data.timeline ? (
     <div class="story-wrap">
       <div class="story-stage">
@@ -181,6 +201,17 @@ const { Content, headings } = await render(project);
 
   :global(html.dark) .light-only { display: none; }
   :global(html:not(.dark)) .dark-only { display: none; }
+
+  /* 소개 카드 (한눈에) */
+  .intro-card { border: 1px solid var(--border); background: var(--bg-secondary); border-radius: 12px; padding: 18px 20px; margin-bottom: 1.5rem; }
+  .intro-summary { font-size: 1.02rem; line-height: 1.6; color: var(--text-primary); font-weight: 600; margin: 0; letter-spacing: -0.01em; }
+  .intro-use { margin-top: 14px; }
+  .intro-eyebrow { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em; color: var(--text-tertiary); text-transform: uppercase; margin-bottom: 9px; }
+  .intro-steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  .intro-steps li { display: flex; gap: 10px; align-items: flex-start; font-size: 0.9rem; color: var(--text-body); line-height: 1.5; }
+  .intro-num { flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; background: var(--code-bg); color: var(--text-secondary); font-size: 0.73rem; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; margin-top: 1px; }
+  .intro-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 15px; }
+  .intro-tag { font-size: 0.72rem; font-weight: 600; color: var(--text-tertiary); background: var(--code-bg); padding: 3px 10px; border-radius: 20px; }
 
   /* 프리뷰 + git-graph 타임라인 */
   .story-wrap { display: grid; grid-template-columns: 1.65fr 1fr; gap: 20px; margin-bottom: 2.25rem; align-items: start; }

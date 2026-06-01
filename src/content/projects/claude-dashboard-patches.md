@@ -6,6 +6,11 @@ period: "2026.05.25"
 category: Better Claude Code
 icon: "⚙"
 github: https://github.com/newhigen/claude-dashboard-patches
+intro:
+  summary: "claude-dashboard status line을 취향대로 손보고, 업데이트가 덮어써도 자동 복원하는 패치."
+  use:
+    - "status line 표시 항목·포맷을 개인화한다"
+    - "업데이트 후 스크립트로 패치를 복원한다"
 ---
 
 ## 문제 — 업데이트가 내 설정을 덮는다

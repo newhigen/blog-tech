@@ -7,6 +7,12 @@ category: AI in Daily Life
 icon: "🗳"
 image: "/projects/election.png"
 dashboard: "/dashboards/election.html"
+intro:
+  summary: "후보 공약과 과거 이행 실적을 한 화면에서 비교해 '이 공약이 지켜질지'를 가늠하는 분석 도구. 가상 도시 예시다."
+  use:
+    - "후보·분야별 공약을 펼쳐 비교한다"
+    - "과거 이행률로 신뢰도를 가늠한다 (단정이 아니라 참고 신호)"
+    - "출처 호버 툴팁으로 근거를 확인한다"
 timeline:
   - img: "/projects/election-v1.png"
     label: "후보 카드"

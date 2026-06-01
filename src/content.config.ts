@@ -30,6 +30,10 @@ const projects = defineCollection({
       label: z.string(),
       intent: z.string(),
     })).optional(),
+    intro: z.object({
+      summary: z.string().optional(),
+      use: z.array(z.string()).default([]),
+    }).optional(),
     category: z.string().default('AI in Daily Life'),
     tags: z.array(z.string()).default([]),
     period: z.string().optional(),

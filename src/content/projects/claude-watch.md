@@ -6,6 +6,12 @@ period: "2026.05.23"
 category: Better Claude Code
 icon: "◉"
 github: https://github.com/newhigen/claude-watch
+intro:
+  summary: "여러 Claude Code 창 중 내 입력을 기다리는 창을 한눈에 보여주는 모니터."
+  use:
+    - "여러 세션 상태를 한 줄 요약으로 본다"
+    - "입력 필요·Context 풀·작동·완료로 묶여 표시된다"
+    - "대기 중인 창부터 골라 손본다"
 ---
 
 ## 문제 — 어느 창이 날 기다리나

@@ -7,6 +7,12 @@ category: AI in Daily Life
 icon: "✈"
 image: "/projects/travel.png"
 dashboard: "/dashboards/travel/travel.html"
+intro:
+  summary: "항공·숙박·동선·체력·비용을 한 화면에 모아, 시기와 박 수를 견주며 가족여행을 정하는 플래너. 익명화 예시."
+  use:
+    - "지도·Day별 타임라인으로 동선과 체력을 본다"
+    - "박 수·패스·등급별로 비용을 비교한다"
+    - "시기 비교로 항공가·날씨·연차를 견준다"
 ---
 
 ## 문제 — 여행 계획은 탭 수십 개로 흩어진다

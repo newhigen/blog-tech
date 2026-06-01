@@ -8,6 +8,12 @@ icon: "☀"
 github: https://github.com/newhigen/claude-warmup
 image: "/projects/claude-warmup.png"
 dashboard: "/dashboards/claude-warmup.html"
+intro:
+  summary: "출근 전 Claude quota 윈도우를 미리 깨워, 하루 토큰이 한 시간대에 몰리지 않게 분산하는 CLI."
+  use:
+    - "워밍업 시각을 예약해둔다"
+    - "출근 전 자동으로 quota 윈도우가 시작된다"
+    - "윈도우 시각화로 몰림·분산을 확인한다"
 ---
 
 ## 문제 — quota가 근무시간과 어긋난다

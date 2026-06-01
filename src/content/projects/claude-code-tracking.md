@@ -7,6 +7,12 @@ category: Better Claude Code
 icon: "◐"
 link: https://ai.sungd.uk
 image: "/projects/claude-code-tracking.png"
+intro:
+  summary: "Claude Code 릴리스마다 '지금 써볼 만한 변화'를 골라주는 changelog 큐레이션."
+  use:
+    - "릴리스별 분류(기능·수정·실험)로 훑는다"
+    - "Pick에서 당장 써볼 것만 본다"
+    - "카테고리 뷰로 주제별로 모아본다"
 ---
 
 ## 문제 — changelog는 길고, 쓸모 있는 변화는 묻힌다

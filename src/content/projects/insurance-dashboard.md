@@ -7,6 +7,12 @@ category: AI in Daily Life
 icon: "⚖"
 image: "/projects/insurance-dashboard.png"
 dashboard: "/dashboards/insurance.html"
+intro:
+  summary: "두 보험 상품을 같은 기준으로 맞춰 비교하고, 30년 보험료·환급을 시뮬레이션하는 리포트."
+  use:
+    - "성별·나이를 같게 맞춰 두 상품을 비교한다"
+    - "같이 들 때 더 받는 시너지 항목을 짚는다"
+    - "30년 누적 보험료·환급을 시뮬레이션한다"
 ---
 
 ## 문제 — 보험 비교는 너무 어렵다

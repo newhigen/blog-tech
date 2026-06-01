@@ -7,6 +7,12 @@ category: AI in Daily Life
 icon: "₩"
 image: "/projects/whooing-tools.png"
 imageLight: "/projects/whooing-tools-light.png"
+intro:
+  summary: "은행 명세서를 후잉 가계부 형식으로 자동 변환하는 스크립트. 매핑 규칙으로 늘 같은 기준으로 분류한다."
+  use:
+    - "매핑 규칙(정기·단골·이름)을 한 번 정해둔다"
+    - "은행 엑셀을 넣으면 후잉 CSV로 변환된다"
+    - "차변·대변까지 맞춰 바로 기입한다"
 ---
 
 ## 문제 — 가계부 입력은 번거롭다
