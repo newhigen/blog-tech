@@ -12,6 +12,9 @@ export default defineConfig({
   site: 'https://newhigen.github.io',
   vite: {
     plugins: [tailwindcss()],
+    server: {
+      allowedHosts: ['localhost', '127.0.0.1', '.ts.net'],
+    },
   },
   integrations: [mdx(), sitemap()],
   markdown: {
